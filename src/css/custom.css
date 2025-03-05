@@ -1,0 +1,19 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif !important;
+}
+
+.text-color-custom{
+    color: #3C5B6F;
+}
+
+.icon-color-custom{
+    color: #2563EB;
+}
+
+.bg-color-custom{
+    background-color: #3C5B6F;
+}

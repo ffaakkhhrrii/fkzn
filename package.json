@@ -1,0 +1,16 @@
+{
+  "name": "fkzn",
+  "version": "1.0.0",
+  "description": "Portofolio Website",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fakhri Zain",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.9",
+    "remixicon": "^4.6.0",
+    "tailwindcss": "^4.0.9"
+  }
+}
