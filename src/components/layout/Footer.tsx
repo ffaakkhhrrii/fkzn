@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
               <span className="font-mono">@fkhri.zain</span>
             </Link>
             <p className="text-text-secondary text-sm md:text-base">
-              {personalInfo.title} specializing in application development and LLM integration.
+              {personalInfo.title} specializing in application development.
             </p>
           </div>
 
