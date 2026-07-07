@@ -1,0 +1,124 @@
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { cn } from '@/utils';
+import { useScrollPosition, useIsMobile } from '@/hooks';
+import { MenuIcon, CloseIcon } from '@/components/common';
+import { NavItem } from '@/types';
+
+const navItems: NavItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Experience', href: '/experience' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Achievements', href: '/achievements' },
+];
+
+/**
+ * Header Component
+ * Glassmorphism navbar with scroll effects and mobile menu
+ */
+export const Header: React.FC = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const scrollY = useScrollPosition();
+  const isMobile = useIsMobile();
+  const location = useLocation();
+
+  const isScrolled = scrollY > 50;
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <header
+      className={cn(
+        'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
+        isScrolled ? 'glass-strong shadow-lg' : 'glass-subtle'
+      )}
+    >
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo / Name */}
+          <Link
+            to="/"
+            className="text-2xl md:text-3xl font-bold text-white hover:text-primary transition-colors duration-300"
+            onClick={closeMobileMenu}
+          >
+            <span className="font-mono">@fkhri.zain</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={cn(
+                    'px-4 py-2 rounded-lg font-medium transition-all duration-300',
+                    'hover:bg-white/20 hover:text-primary',
+                    isActive
+                      ? 'glass text-primary'
+                      : 'text-white'
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden glass rounded-lg p-2 text-white hover:text-primary transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? (
+              <CloseIcon size={24} />
+            ) : (
+              <MenuIcon size={24} />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMobile && (
+          <div
+            className={cn(
+              'md:hidden overflow-hidden transition-all duration-300 ease-in-out',
+              isMobileMenuOpen ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'
+            )}
+          >
+            <div className="flex flex-col space-y-2 pt-2">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={closeMobileMenu}
+                    className={cn(
+                      'px-4 py-3 rounded-lg font-medium transition-all duration-300',
+                      'hover:bg-white/20 hover:text-primary',
+                      isActive
+                        ? 'glass text-primary'
+                        : 'text-white'
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
+};

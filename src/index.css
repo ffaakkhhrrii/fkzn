@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables - Theme Configuration */
+:root {
+  /* Color Palette - Dark Futuristic Theme */
+  --color-background: #0B0C10;
+  --color-primary: #66FCF1;        /* Neon Cyan */
+  --color-secondary: #45A29E;      /* Teal */
+  --color-accent: #66FCF1;         /* Neon Cyan (same as primary) */
+  
+  /* Text colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #C5C6C7;
+  --color-text-light: #66FCF1;
+  
+  /* Spacing */
+  --spacing-unit: 8px;
+  --border-radius: 8px;
+  
+  /* Glassmorphism - Dark Theme */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(102, 252, 241, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --glass-blur: 10px;
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  body {
+    @apply font-sans antialiased;
+    background: #0B0C10;
+    color: #FFFFFF;
+    min-height: 100vh;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    color: #FFFFFF;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+  
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+  
+  a {
+    @apply transition-colors duration-300;
+  }
+}
+
+/* Custom Utility Classes */
+@layer components {
+  /* Glassmorphism Effect - Dark Theme */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 252, 241, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(102, 252, 241, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  }
+  
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(102, 252, 241, 0.1);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #66FCF1 0%, #45A29E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Hover Glow Effect */
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(102, 252, 241, 0.6), 0 0 40px rgba(102, 252, 241, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20;
+  }
+  
+  /* Card Hover Effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .card-hover:hover {
+    @apply transform -translate-y-2 shadow-2xl;
+  }
+}
+
+/* Scrollbar Styling */
+@layer utilities {
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(11, 12, 16, 0.5);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(102, 252, 241, 0.3);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 252, 241, 0.6);
+  }
+  
+  /* Selection */
+  ::selection {
+    background: rgba(102, 252, 241, 0.3);
+    color: #FFFFFF;
+  }
+  
+  ::-moz-selection {
+    background: rgba(102, 252, 241, 0.3);
+    color: #FFFFFF;
+  }
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Loading State */
+.loading {
+  @apply animate-pulse;
+}
+
+/* Focus Visible */
+.focus-visible:focus-visible {
+  @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+}
