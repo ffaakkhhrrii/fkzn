@@ -107,15 +107,15 @@ export const portfolioData: PortfolioData = {
       images: ['/assets/images/edeaf.png'],
     },
     {
-      name: 'Notes App',
+      name: 'Quick Notes',
       description:
-        "Notes is an Android mini project that I created, this application is useful for storing, deleting and updating notes created by users, this application has implemented the MVVM architectural pattern. This app's using Jetpack Compose and SQLite Room for Local Data",
+        "A clean and minimal notes app built with Jetpack Compose — type, scan, or speak your notes and keep them organized.",
       role: 'Developer',
       technologies: ['Kotlin', 'Jetpack Compose', 'Dagger Hilt', 'Room'],
       links: {
-        github: 'https://github.com/ffaakkhhrrii/note_app',
+        github: 'https://github.com/ffaakkhhrrii/quick_notes',
       },
-      images: ['/assets/images/notes_app.png'],
+      images: ['/assets/images/quick_notes.png'],
     },
     {
       name: 'Code Path',
