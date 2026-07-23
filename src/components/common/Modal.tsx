@@ -54,7 +54,7 @@ export const Modal: React.FC<ModalProps> = ({
       onClick={onClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
 
       {/* Modal Content */}
       <div
@@ -68,16 +68,16 @@ export const Modal: React.FC<ModalProps> = ({
         {/* Header */}
         {title && (
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-white">
+            <h3 className="text-2xl md:text-3xl font-bold text-primary">
               {title}
             </h3>
             <button
               onClick={onClose}
-              className="glass rounded-full p-2 hover:bg-white/20 transition-colors"
+              className="glass rounded-full p-2 hover:bg-primary/10 transition-colors"
               aria-label="Close modal"
             >
               <svg
-                className="w-6 h-6 text-white"
+                className="w-6 h-6 text-primary"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"

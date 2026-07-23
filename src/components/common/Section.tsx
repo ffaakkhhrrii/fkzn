@@ -18,7 +18,7 @@ export const Section: React.FC<SectionProps> = ({
       {(title || subtitle) && (
         <div className="text-center mb-12 animate-fade-in">
           {title && (
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
               {title}
             </h2>
           )}

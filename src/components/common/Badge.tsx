@@ -19,7 +19,7 @@ export const Badge: React.FC<BadgeProps> = ({
   onClick,
 }) => {
   const variantClasses = {
-    default: 'glass bg-white/10 text-white border-white/20',
+    default: 'glass bg-surface/60 text-primary border-border',
     accent: 'glass bg-primary/20 text-primary border-primary/30',
     secondary: 'glass bg-secondary/20 text-secondary border-secondary/30',
   };

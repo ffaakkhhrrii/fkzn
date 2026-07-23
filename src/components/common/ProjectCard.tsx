@@ -29,7 +29,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
       {/* Project Info */}
       <div className="flex-1 flex flex-col">
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+        <h3 className="text-xl md:text-2xl font-bold text-primary mb-2">
           {project.name}
         </h3>
 
@@ -40,7 +40,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {/* Role */}
         <div className="mb-4">
           <span className="text-sm font-medium text-text-secondary">Role: </span>
-          <span className="text-sm text-white">{project.role}</span>
+          <span className="text-sm text-primary">{project.role}</span>
         </div>
 
         {/* Technologies */}

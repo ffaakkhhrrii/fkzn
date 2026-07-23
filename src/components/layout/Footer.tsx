@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
           <div>
             <Link
               to="/"
-              className="text-2xl md:text-3xl font-bold text-white hover:text-primary transition-colors duration-300 inline-block mb-4"
+              className="text-2xl md:text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300 inline-block mb-4"
             >
               <span className="font-mono">@fkhri.zain</span>
             </Link>
@@ -53,12 +53,12 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
+            <h3 className="text-lg font-bold text-primary mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   to="/about"
-                  className="text-text-secondary hover:text-primary transition-colors duration-300"
+                  className="text-text-secondary hover:text-secondary transition-colors duration-300"
                 >
                   About Me
                 </Link>
@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/projects"
-                  className="text-text-secondary hover:text-primary transition-colors duration-300"
+                  className="text-text-secondary hover:text-secondary transition-colors duration-300"
                 >
                   Projects
                 </Link>
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/experience"
-                  className="text-text-secondary hover:text-primary transition-colors duration-300"
+                  className="text-text-secondary hover:text-secondary transition-colors duration-300"
                 >
                   Experience
                 </Link>
@@ -84,7 +84,7 @@ export const Footer: React.FC = () => {
 
           {/* Social Links */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Connect</h3>
+            <h3 className="text-lg font-bold text-primary mb-4">Connect</h3>
             <div className="flex gap-4">
               {socialIcons.map((social) => {
                 const Icon = social.icon;
@@ -94,7 +94,7 @@ export const Footer: React.FC = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="glass rounded-full p-3 text-white hover:text-primary hover:scale-110 transition-all duration-300"
+                    className="glass rounded-full p-3 text-primary hover:text-secondary hover:scale-110 transition-all duration-300"
                     aria-label={social.name}
                   >
                     <Icon size={20} />
@@ -106,7 +106,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/20 pt-6">
+        <div className="border-t border-border pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-text-secondary text-sm text-center md:text-left">
               © {currentYear} {personalInfo.name}. All rights reserved.

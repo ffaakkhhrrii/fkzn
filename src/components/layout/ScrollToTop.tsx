@@ -30,7 +30,7 @@ export const ScrollToTop: React.FC = () => {
       className={cn(
         'fixed bottom-8 right-8 z-50',
         'glass-strong rounded-full p-4',
-        'text-white hover:text-primary',
+        'text-primary hover:text-secondary',
         'transition-all duration-300 hover-glow',
         'transform rotate-180',
         isVisible

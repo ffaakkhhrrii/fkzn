@@ -8,29 +8,39 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: '#0B0C10',
-          dark: '#000000',
-          light: '#1F2833',
+          DEFAULT: '#FFFFFF',
+          dark: '#F5F5F4',
+          light: '#FFFFFF',
         },
         primary: {
-          DEFAULT: '#66FCF1',
-          dark: '#45A29E',
-          light: '#8FFDF5',
+          DEFAULT: '#3C3D37',
+          dark: '#2A2B26',
+          light: '#5C5D55',
         },
         secondary: {
-          DEFAULT: '#45A29E',
-          dark: '#2C6E6D',
-          light: '#66C7C2',
+          DEFAULT: '#6B6B68',
+          dark: '#4A4A48',
+          light: '#8A8A88',
         },
         accent: {
-          DEFAULT: '#66FCF1',
-          dark: '#45A29E',
-          light: '#8FFDF5',
+          DEFAULT: '#3C3D37',
+          dark: '#2A2B26',
+          light: '#5C5D55',
+        },
+        surface: {
+          DEFAULT: '#F5F5F4',
+          dark: '#EBEBE9',
+          light: '#FFFFFF',
+        },
+        border: {
+          DEFAULT: '#E5E5E3',
+          dark: '#D5D5D3',
+          light: '#F0F0EE',
         },
         text: {
-          primary: '#FFFFFF',
-          secondary: '#C5C6C7',
-          light: '#66FCF1',
+          primary: '#1C1C1A',
+          secondary: '#6B6B68',
+          light: '#9A9A98',
         },
       },
       fontFamily: {
@@ -52,8 +62,8 @@ export default {
           '50%': { transform: 'translateY(-20px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 5px rgba(102, 252, 241, 0.5), 0 0 10px rgba(102, 252, 241, 0.3)' },
-          '100%': { boxShadow: '0 0 10px rgba(102, 252, 241, 0.8), 0 0 20px rgba(102, 252, 241, 0.5)' },
+          '0%': { boxShadow: '0 0 5px rgba(60, 61, 55, 0.1), 0 0 10px rgba(107, 107, 104, 0.08)' },
+          '100%': { boxShadow: '0 0 10px rgba(60, 61, 55, 0.18), 0 0 20px rgba(107, 107, 104, 0.12)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(30px)', opacity: '0' },

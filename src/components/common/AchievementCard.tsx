@@ -23,7 +23,7 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({ achievement })
 
         {/* Content */}
         <div className="flex-1">
-          <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+          <h3 className="text-lg md:text-xl font-bold text-primary mb-2">
             {achievement.title}
           </h3>
 

@@ -26,10 +26,10 @@ export const GlassButton: React.FC<ButtonProps> = ({
   );
 
   const variantClasses = {
-    primary: 'bg-primary/20 text-white hover:bg-primary/30 border-primary/30',
-    secondary: 'bg-secondary/20 text-white hover:bg-secondary/30 border-secondary/30',
-    accent: 'bg-accent/20 text-white hover:bg-accent/30 border-accent/30',
-    ghost: 'bg-transparent text-white hover:bg-white/10 border-transparent',
+    primary: 'bg-primary/10 text-primary hover:bg-primary/20 border-primary/20',
+    secondary: 'bg-secondary/20 text-primary hover:bg-secondary/30 border-secondary/30',
+    accent: 'bg-accent/10 text-primary hover:bg-accent/20 border-accent/20',
+    ghost: 'bg-transparent text-primary hover:bg-primary/10 border-transparent',
   };
 
   const sizeClasses = {

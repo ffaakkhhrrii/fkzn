@@ -16,7 +16,7 @@ export const SkillCard: React.FC<SkillCategoryProps> = ({
     <GlassCard hover className="h-full">
       <div className="flex items-center gap-3 mb-4">
         {icon && <div className="text-primary">{icon}</div>}
-        <h3 className="text-xl md:text-2xl font-bold text-white">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-bold text-primary">{title}</h3>
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, index) => (

@@ -24,7 +24,7 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) =>
         {/* Content */}
         <div className="flex-1">
           {/* Position & Company */}
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+          <h3 className="text-xl md:text-2xl font-bold text-primary mb-1">
             {experience.position}
           </h3>
           <p className="text-lg text-secondary font-medium mb-2">

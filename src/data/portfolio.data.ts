@@ -197,7 +197,7 @@ export const portfolioData: PortfolioData = {
   },
 
   theme: {
-    defaultTheme: 'dark',
+    defaultTheme: 'light',
     enableThemeToggle: false,
   },
 };

@@ -22,7 +22,7 @@ export const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
 
         {/* Content */}
         <div className="flex-1">
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+          <h3 className="text-xl md:text-2xl font-bold text-primary mb-1">
             {education.degree}
           </h3>
 

@@ -22,7 +22,7 @@ export const HeroSection: React.FC = () => {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary mb-4">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-4">
             Hi, I'm{' '}
             <span className="text-accent">{personalInfo.name}</span>
           </h1>
