@@ -7,6 +7,7 @@ export const portfolioData: PortfolioData = {
     location: 'Jakarta, Indonesia',
     email: 'fakhrizain9@gmail.com',
     phone: '+62 851-7690-1068',
+    shortBio: 'Software Developer focused on creating clean, efficient, and impactful software solutions.',
     bio: 'Enthusiastic programmer specializing in application development, with strong analytical thinking and problem-solving skills. Experienced in both individual and collaborative environments, with proven ability to adapt, learn quickly, and deliver innovative solutions. I am continuously eager to learn, contribute to innovative projects, and expand my knowledge and skills in the ever-evolving tech landscape.',
     profilePhoto: {
       path: '/assets/images/profile.png',

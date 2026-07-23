@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -41,40 +41,45 @@
     background: #FFFFFF;
     color: #6B6B68;
     min-height: 100vh;
+    font-weight: 400;
   }
   
   html {
     scroll-behavior: smooth;
-  }
-  
-  h1, h2 {
-    @apply font-bold;
-    color: #1C1C1A;
-  }
-  
-  h3, h4, h5, h6 {
-    @apply font-bold;
-    color: #3C3D37;
+    scroll-padding-top: 5rem;
   }
   
   h1 {
+    @apply font-bold;
+    color: #1C1C1A;
     @apply text-4xl md:text-5xl lg:text-6xl;
   }
   
   h2 {
+    @apply font-bold;
+    color: #1C1C1A;
     @apply text-3xl md:text-4xl lg:text-5xl;
   }
   
   h3 {
+    @apply font-semibold;
+    color: #3C3D37;
     @apply text-2xl md:text-3xl lg:text-4xl;
   }
   
   h4 {
+    @apply font-semibold;
+    color: #3C3D37;
     @apply text-xl md:text-2xl lg:text-3xl;
   }
   
+  h5, h6 {
+    @apply font-semibold;
+    color: #3C3D37;
+  }
+  
   p {
-    @apply text-base md:text-lg leading-relaxed;
+    @apply text-base md:text-lg leading-relaxed font-normal;
   }
   
   a {

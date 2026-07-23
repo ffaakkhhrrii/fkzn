@@ -6,6 +6,7 @@ export interface PersonalInfo {
   email: string;
   phone: string;
   bio: string;
+  shortBio: string;
   profilePhoto: {
     path: string;
     alt: string;
@@ -126,10 +127,14 @@ export interface SectionProps {
   subtitle?: string;
 }
 
-export interface IconProps {
-  name: string;
-  size?: number;
-  className?: string;
+export interface NavItem {
+  label: string;
+  href: string;
+}
+
+export interface SkillCategoryProps {
+  title: string;
+  skills: string[];
 }
 
 export interface ModalProps {
@@ -138,16 +143,4 @@ export interface ModalProps {
   children: React.ReactNode;
   title?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
-}
-
-export interface NavItem {
-  label: string;
-  href: string;
-  external?: boolean;
-}
-
-export interface SkillCategoryProps {
-  title: string;
-  skills: string[];
-  icon?: React.ReactNode;
 }

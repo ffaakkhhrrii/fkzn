@@ -44,8 +44,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['Fira Code', 'monospace'],
+        sans: ['Poppins', 'system-ui', 'sans-serif'],
       },
       backdropBlur: {
         xs: '2px',

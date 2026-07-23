@@ -1,33 +1,30 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/utils';
-import { useScrollPosition, useIsMobile } from '@/hooks';
+import { useScrollPosition, useIsMobile, useActiveSection } from '@/hooks';
 import { MenuIcon, CloseIcon } from '@/components/common';
 import { NavItem } from '@/types';
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Experience', href: '/experience' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Achievements', href: '/achievements' },
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Achievements', href: '#achievements' },
 ];
 
 /**
  * Header Component
- * Glassmorphism navbar with scroll effects and mobile menu
+ * Glassmorphism navbar with anchor navigation, scroll-based active state, and mobile menu
  */
 export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const scrollY = useScrollPosition();
   const isMobile = useIsMobile();
-  const location = useLocation();
+
+  const sectionIds = navItems.map((item) => item.href.replace('#', ''));
+  const activeSection = useActiveSection(sectionIds);
 
   const isScrolled = scrollY > 50;
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
@@ -43,39 +40,41 @@ export const Header: React.FC = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo / Name */}
-          <Link
-            to="/"
+          <a
+            href="#home"
             className="text-2xl md:text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
             onClick={closeMobileMenu}
           >
-            <span className="font-mono">@fkhri.zain</span>
-          </Link>
+            Fakhri Zain
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems.map((item) => {
-              const isActive = location.pathname === item.href;
+              const itemId = item.href.replace('#', '');
+              const isActive = activeSection === itemId;
               return (
-                <Link
+                <a
                   key={item.href}
-                  to={item.href}
+                  href={item.href}
                   className={cn(
-                    'px-4 py-2 rounded-lg font-medium transition-all duration-300',
-                    'hover:bg-primary/10 hover:text-secondary',
-                    isActive
-                      ? 'glass text-primary'
-                      : 'text-text-secondary'
+                    'relative px-4 py-2 font-medium transition-all duration-300',
+                    'hover:text-secondary',
+                    isActive ? 'text-primary' : 'text-text-secondary'
                   )}
                 >
                   {item.label}
-                </Link>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary rounded-full" />
+                  )}
+                </a>
               );
             })}
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            onClick={toggleMobileMenu}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden glass rounded-lg p-2 text-primary hover:text-secondary transition-colors"
             aria-label="Toggle mobile menu"
           >
@@ -97,22 +96,24 @@ export const Header: React.FC = () => {
           >
             <div className="flex flex-col space-y-2 pt-2">
               {navItems.map((item) => {
-                const isActive = location.pathname === item.href;
+                const itemId = item.href.replace('#', '');
+                const isActive = activeSection === itemId;
                 return (
-                  <Link
+                  <a
                     key={item.href}
-                    to={item.href}
+                    href={item.href}
                     onClick={closeMobileMenu}
                     className={cn(
-                      'px-4 py-3 rounded-lg font-medium transition-all duration-300',
-                      'hover:bg-primary/10 hover:text-secondary',
-                      isActive
-                        ? 'glass text-primary'
-                        : 'text-text-secondary'
+                      'relative px-4 py-3 font-medium transition-all duration-300',
+                      'hover:text-secondary',
+                      isActive ? 'text-primary' : 'text-text-secondary'
                     )}
                   >
                     {item.label}
-                  </Link>
+                    {isActive && (
+                      <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary rounded-full" />
+                    )}
+                  </a>
                 );
               })}
             </div>

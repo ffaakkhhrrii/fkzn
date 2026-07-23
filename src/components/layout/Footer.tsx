@@ -1,37 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { GithubIcon, LinkedinIcon, InstagramIcon, EmailIcon } from '@/components/common';
 import { portfolioData } from '@/data/portfolio.data';
 
+const quickLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Achievements', href: '#achievements' },
+];
+
 /**
  * Footer Component
- * Glassmorphism footer with social links and copyright
+ * Glassmorphism footer with quick links, social links, and copyright
  */
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const { personalInfo, socialLinks } = portfolioData;
 
   const socialIcons = [
-    {
-      name: 'GitHub',
-      icon: GithubIcon,
-      href: socialLinks.github,
-    },
-    {
-      name: 'LinkedIn',
-      icon: LinkedinIcon,
-      href: socialLinks.linkedin,
-    },
-    {
-      name: 'Instagram',
-      icon: InstagramIcon,
-      href: socialLinks.instagram,
-    },
-    {
-      name: 'Email',
-      icon: EmailIcon,
-      href: `mailto:${personalInfo.email}`,
-    },
+    { name: 'GitHub', icon: GithubIcon, href: socialLinks.github },
+    { name: 'LinkedIn', icon: LinkedinIcon, href: socialLinks.linkedin },
+    { name: 'Instagram', icon: InstagramIcon, href: socialLinks.instagram },
+    { name: 'Email', icon: EmailIcon, href: `mailto:${personalInfo.email}` },
   ];
 
   return (
@@ -40,14 +30,14 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand Section */}
           <div>
-            <Link
-              to="/"
+            <a
+              href="#home"
               className="text-2xl md:text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300 inline-block mb-4"
             >
-              <span className="font-mono">@fkhri.zain</span>
-            </Link>
-            <p className="text-text-secondary text-sm md:text-base">
-              {personalInfo.title} specializing in application development.
+              Fakhri Zain
+            </a>
+            <p className="text-text-secondary text-sm md:text-base font-normal">
+              {personalInfo.shortBio}
             </p>
           </div>
 
@@ -55,30 +45,16 @@ export const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-bold text-primary mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/about"
-                  className="text-text-secondary hover:text-secondary transition-colors duration-300"
-                >
-                  About Me
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/projects"
-                  className="text-text-secondary hover:text-secondary transition-colors duration-300"
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/experience"
-                  className="text-text-secondary hover:text-secondary transition-colors duration-300"
-                >
-                  Experience
-                </Link>
-              </li>
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-text-secondary hover:text-secondary transition-colors duration-300"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -108,11 +84,11 @@ export const Footer: React.FC = () => {
         {/* Divider */}
         <div className="border-t border-border pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-text-secondary text-sm text-center md:text-left">
+            <p className="text-text-secondary text-sm text-center md:text-left font-normal">
               © {currentYear} {personalInfo.name}. All rights reserved.
             </p>
-            <p className="text-text-secondary text-sm text-center md:text-right">
-              Built with React, TypeScript & Tailwind CSS
+            <p className="text-text-secondary text-sm text-center md:text-right font-normal">
+              Built with ❤️
             </p>
           </div>
         </div>

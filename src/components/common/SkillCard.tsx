@@ -1,23 +1,22 @@
 import React from 'react';
 import { GlassCard } from './GlassCard';
 import { Badge } from './Badge';
-import { SkillCategoryProps } from '@/types';
+
+interface SkillCardProps {
+  title: string;
+  skills: string[];
+}
 
 /**
  * SkillCard Component
- * Displays a category of skills with an optional icon
+ * Displays a category of skills with typography-based hierarchy
  */
-export const SkillCard: React.FC<SkillCategoryProps> = ({
-  title,
-  skills,
-  icon,
-}) => {
+export const SkillCard: React.FC<SkillCardProps> = ({ title, skills }) => {
   return (
     <GlassCard hover className="h-full">
-      <div className="flex items-center gap-3 mb-4">
-        {icon && <div className="text-primary">{icon}</div>}
-        <h3 className="text-xl md:text-2xl font-bold text-primary">{title}</h3>
-      </div>
+      <h3 className="text-xl md:text-2xl font-bold text-primary mb-4">
+        {title}
+      </h3>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, index) => (
           <Badge key={index} variant="accent">
