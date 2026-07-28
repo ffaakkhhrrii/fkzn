@@ -33,9 +33,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {project.name}
         </h3>
 
-        <p className="text-text-secondary mb-4 flex-1 leading-relaxed">
-          {project.description}
-        </p>
+        <p
+          className="text-text-secondary mb-4 flex-1 leading-relaxed [&_a]:text-primary [&_a]:underline hover:[&_a]:text-accent"
+          dangerouslySetInnerHTML={{ __html: project.description }}
+        />
 
         {/* Role */}
         <div className="mb-4">
