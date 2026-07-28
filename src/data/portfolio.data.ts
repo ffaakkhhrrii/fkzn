@@ -131,7 +131,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: 'Faith App',
-      description: "Faith is an Android app that helps Muslims in Indonesia with daily worship — prayer times, reading the Quran, and prayer reminders. It's the mobile version of the <a src='https://faith-sandy-pi.vercel.app/'>Faith Web</a>",
+      description: "Faith is an Android app that helps Muslims in Indonesia with daily worship — prayer times, reading the Quran, and prayer reminders. It's the mobile version of the <a href='https://faith-sandy-pi.vercel.app/' target='_blank' rel='noopener noreferrer'>Faith Web</a>",
       role: 'Developer',
       technologies: ['Kotlin', 'Jetpack Compose', 'Dagger Hilt', 'Room', 'DataStore', 'Glance'],
       links: {
