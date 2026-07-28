@@ -129,6 +129,17 @@ export const portfolioData: PortfolioData = {
       },
       images: ['/assets/images/code_path.png'],
     },
+    {
+      name: 'Faith App',
+      description: "Faith is an Android app that helps Muslims in Indonesia with daily worship — prayer times, reading the Quran, and prayer reminders. It's the mobile version of the <a src='https://faith-sandy-pi.vercel.app/'>Faith Web</a>",
+      role: 'Developer',
+      technologies: ['Kotlin', 'Jetpack Compose', 'Dagger Hilt', 'Room', 'DataStore', 'Glance'],
+      links: {
+        github: 'https://github.com/ffaakkhhrrii/faith-app',
+      },
+      images: ['/assets/images/faith.png'],
+    },
+
   ],
 
   achievements: [
