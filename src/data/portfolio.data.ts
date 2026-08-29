@@ -8,7 +8,7 @@ export const portfolioData: PortfolioData = {
     email: 'fakhrizain9@gmail.com',
     phone: '+62 851-7690-1068',
     shortBio: 'Software Developer focused on creating clean, efficient, and impactful software solutions.',
-    bio: 'Enthusiastic programmer specializing in application development, with strong analytical thinking and problem-solving skills. Experienced in both individual and collaborative environments, with proven ability to adapt, learn quickly, and deliver innovative solutions. I am continuously eager to learn, contribute to innovative projects, and expand my knowledge and skills in the ever-evolving tech landscape.',
+    bio: "I'm a Software Developer with 1-3 years of experience building applications that solve real problems. I enjoy the process of breaking down complex challenges whether it's designing a feature from scratch or debugging something no one else wants to touch. I've worked both independently and in collaborative team settings, and I pick up new tools and technologies quickly whenever a project calls for it. Outside of writing code, I'm always looking for ways to sharpen my skills and take on projects that push me to learn something new.",
     profilePhoto: {
       path: '/assets/images/profile.png',
       alt: 'Fakhri Zain',

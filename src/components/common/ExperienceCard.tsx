@@ -12,6 +12,12 @@ interface ExperienceCardProps {
  * Displays work experience with company, role, duration, and technologies
  */
 export const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
+  const lines = experience.description.split('\n').filter(Boolean);
+  const intro = lines.filter((line) => !line.startsWith('•'));
+  const bullets = lines
+    .filter((line) => line.startsWith('•'))
+    .map((line) => line.replace(/^•\s*/, ''));
+
   return (
     <GlassCard hover className="h-full">
       {/* Position & Company */}
@@ -30,8 +36,19 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) =>
       </div>
 
       {/* Description */}
-      <div className="text-text-secondary mb-4 leading-relaxed whitespace-pre-line font-normal">
-        {experience.description}
+      <div className="text-text-secondary mb-4 leading-relaxed font-normal">
+        {intro.map((paragraph, index) => (
+          <p key={index} className="mb-2 last:mb-0">
+            {paragraph}
+          </p>
+        ))}
+        {bullets.length > 0 && (
+          <ul className="list-disc pl-5 space-y-1 mt-2">
+            {bullets.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* Technologies */}

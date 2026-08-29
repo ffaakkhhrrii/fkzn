@@ -11,11 +11,6 @@ export const ExperienceSection: React.FC = () => {
 
   const highlights = [
     {
-      title: 'Full-Stack Development',
-      description:
-        'Building and maintaining both mobile and web applications with modern technologies',
-    },
-    {
       title: 'AI Integration',
       description:
         'Implementing LLM capabilities using LangChain to enhance application intelligence',
@@ -55,7 +50,7 @@ export const ExperienceSection: React.FC = () => {
             LLM Application
           </h3>
           <p className="text-lg text-secondary leading-relaxed font-normal">
-            Currently working on integrating Large Language Model (LLM) capabilities
+            Currently working and learning on integrating Large Language Model (LLM) capabilities
             into procurement applications using <strong>LangChain</strong> and{' '}
             <strong>Python</strong>. This involves enhancing application functionality,
             improving user experience through AI-powered features, and implementing
@@ -83,11 +78,15 @@ export const ExperienceSection: React.FC = () => {
           Key Highlights
         </h3>
         <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto text-center mb-8">
-          Notable achievements and responsibilities
+          Core skills and areas of expertise
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {highlights.map((item, index) => (
-            <GlassCard key={index} hover className="text-center">
+            <GlassCard
+              key={index}
+              hover
+              className="text-center w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            >
               <h4 className="text-xl font-bold text-primary mb-2">
                 {item.title}
               </h4>
@@ -102,10 +101,10 @@ export const ExperienceSection: React.FC = () => {
       {/* Technologies */}
       <div className="mt-16">
         <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2 text-center">
-          Technologies I Work With
+          Technologies
         </h3>
         <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto text-center mb-8">
-          Tools and frameworks from my professional experience
+          Stack behind my work and current learning
         </p>
         <GlassCard>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -114,11 +113,11 @@ export const ExperienceSection: React.FC = () => {
                 Current Tech Stack
               </h4>
               <div className="space-y-2 text-secondary font-normal">
-                <p><strong>Languages:</strong> Kotlin, Flutter, Java, JavaScript, PHP, Python</p>
-                <p><strong>Frameworks:</strong> CodeIgniter, Laravel, Tailwind</p>
+                <p><strong>Languages:</strong> Kotlin, Dart, Java, JavaScript, PHP, Python</p>
+                <p><strong>Frameworks:</strong> CodeIgniter, Laravel, Tailwind, Flutter, Jetpack Compose</p>
                 <p><strong>Databases:</strong> PostgreSQL, MySQL, SQL Server, Firebase</p>
                 <p><strong>Version Control:</strong> Bitbucket, GIT</p>
-                <p><strong>AI:</strong> LangChain, LLM Integration</p>
+                <p><strong>LLM Tooling:</strong> LangChain</p>
               </div>
             </div>
 
@@ -128,7 +127,6 @@ export const ExperienceSection: React.FC = () => {
               </h4>
               <div className="space-y-2 text-secondary font-normal">
                 <p>Agile/Scrum methodology</p>
-                <p>Version control with Bitbucket</p>
                 <p>Code review and collaboration</p>
                 <p>Technical documentation</p>
                 <p>Bug tracking and resolution</p>
