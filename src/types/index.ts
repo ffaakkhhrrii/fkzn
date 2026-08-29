@@ -26,7 +26,7 @@ export interface Skills {
   versionControl: string[];
   databases: string[];
   frameworks: string[];
-  other?: string[];
+  llmTooling?: string[];
 }
 
 // Experience Types

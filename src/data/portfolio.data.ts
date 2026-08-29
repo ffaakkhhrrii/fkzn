@@ -24,7 +24,7 @@ export const portfolioData: PortfolioData = {
   skills: {
     programmingLanguages: [
       'Kotlin',
-      'Flutter',
+      'Dart',
       'Java',
       'JavaScript',
       'PHP',
@@ -33,8 +33,8 @@ export const portfolioData: PortfolioData = {
     ],
     versionControl: ['Bitbucket', 'GIT'],
     databases: ['PostgreSQL', 'MySQL', 'SQL Server Database', 'Firebase'],
-    frameworks: ['CodeIgniter', 'Laravel', 'Tailwind', 'Jetpack Compose'],
-    other: ['Langchain for LLM Application'],
+    frameworks: ['CodeIgniter', 'Laravel', 'Tailwind', 'Jetpack Compose', 'Flutter'],
+    llmTooling: ['LangChain'],
   },
 
   experience: [

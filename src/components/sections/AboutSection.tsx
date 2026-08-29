@@ -26,8 +26,8 @@ export const AboutSection: React.FC = () => {
       title: 'Frameworks & Libraries',
       skills: skills.frameworks,
     },
-    ...(skills.other && skills.other.length > 0
-      ? [{ title: 'Other', skills: skills.other }]
+    ...(skills.llmTooling && skills.llmTooling.length > 0
+      ? [{ title: 'LLM Tooling', skills: skills.llmTooling }]
       : []),
   ];
 
@@ -94,7 +94,7 @@ export const AboutSection: React.FC = () => {
       <Section
         id="skills"
         title="Technical Skills"
-        subtitle="Technologies and tools I'm proficient in"
+        subtitle="Technologies I use at work and am currently exploring"
         className="bg-gradient-to-b from-transparent to-white/5"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

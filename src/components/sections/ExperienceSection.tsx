@@ -98,45 +98,6 @@ export const ExperienceSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Technologies */}
-      <div className="mt-16">
-        <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-2 text-center">
-          Technologies
-        </h3>
-        <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto text-center mb-8">
-          Stack behind my work and current learning
-        </p>
-        <GlassCard>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="text-xl font-bold text-primary mb-4">
-                Current Tech Stack
-              </h4>
-              <div className="space-y-2 text-secondary font-normal">
-                <p><strong>Languages:</strong> Kotlin, Dart, Java, JavaScript, PHP, Python</p>
-                <p><strong>Frameworks:</strong> CodeIgniter, Laravel, Tailwind, Flutter, Jetpack Compose</p>
-                <p><strong>Databases:</strong> PostgreSQL, MySQL, SQL Server, Firebase</p>
-                <p><strong>Version Control:</strong> Bitbucket, GIT</p>
-                <p><strong>LLM Tooling:</strong> LangChain</p>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-xl font-bold text-primary mb-4">
-                Development Practices
-              </h4>
-              <div className="space-y-2 text-secondary font-normal">
-                <p>Agile/Scrum methodology</p>
-                <p>Code review and collaboration</p>
-                <p>Technical documentation</p>
-                <p>Bug tracking and resolution</p>
-                <p>Feature development lifecycle</p>
-                <p>Team collaboration and communication</p>
-              </div>
-            </div>
-          </div>
-        </GlassCard>
-      </div>
     </Section>
   );
 };
