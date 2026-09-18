@@ -72,6 +72,14 @@ export interface Achievement {
   featured?: boolean; // For homepage display
 }
 
+// Community / Organization Types
+export interface Community {
+  role: string;
+  organization?: string;
+  duration: string;
+  description: string;
+}
+
 // SEO Types
 export interface SEOConfig {
   metaTitle: string;
@@ -93,6 +101,7 @@ export interface PortfolioData {
   skills: Skills;
   experience: Experience[];
   education: Education[];
+  communities?: Community[];
   projects: Project[];
   achievements: Achievement[];
   seo: SEOConfig;

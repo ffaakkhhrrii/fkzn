@@ -5,6 +5,7 @@ import { portfolioData } from '@/data/portfolio.data';
 const quickLinks = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Communities', href: '#communities' },
   { label: 'Projects', href: '#projects' },
   { label: 'Achievements', href: '#achievements' },
 ];

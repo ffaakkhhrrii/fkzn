@@ -5,6 +5,7 @@ import {
   HeroSection,
   AboutSection,
   ExperienceSection,
+  CommunitiesSection,
   ProjectsSection,
   AchievementsSection,
 } from '@/components/sections';
@@ -22,6 +23,7 @@ export const MainLayout: React.FC = () => {
         <HeroSection />
         <AboutSection />
         <ExperienceSection />
+        <CommunitiesSection />
         <ProjectsSection />
         <AchievementsSection />
       </main>

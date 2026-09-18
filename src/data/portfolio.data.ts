@@ -95,6 +95,22 @@ export const portfolioData: PortfolioData = {
     },
   ],
 
+  communities: [
+    {
+      role: 'Student Skills Competition Selection Jury & Mentor',
+      duration: '2025 - 2026',
+      description:
+        "Served as Selection Jury and Mentor for students of SMKN 26 Jakarta competing in the Lomba Kompetensi Siswa (LKS) IT Software Solution for Business, Indonesia's national student skills competition.",
+    },
+    {
+      role: 'Software Application Mentor - IT Club',
+      organization: 'Vocational High School 26 Jakarta',
+      duration: '2023 - 2024',
+      description:
+        'Teaching junior members, in learning the basic fundamentals of android application development.',
+    },
+  ],
+
   projects: [
     {
       name: 'EDEAF',
