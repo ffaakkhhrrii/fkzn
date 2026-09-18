@@ -4,7 +4,7 @@ import { portfolioData } from '@/data/portfolio.data';
 
 /**
  * ProjectsSection Component
- * Showcase of all personal projects
+ * Showcase of personal projects
  */
 export const ProjectsSection: React.FC = () => {
   const { projects } = portfolioData;
@@ -14,12 +14,13 @@ export const ProjectsSection: React.FC = () => {
       id="projects"
       title="My Projects"
       subtitle="A collection of personal projects and applications I've built"
-      className="bg-gradient-to-b from-transparent to-white/5"
+      className="bg-gradient-to-b from-transparent to-surface/40"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <div
-            key={index}
+            key={project.name}
             className="animate-slide-up"
             style={{ animationDelay: `${index * 0.1}s` }}
           >
@@ -28,14 +29,16 @@ export const ProjectsSection: React.FC = () => {
         ))}
       </div>
 
-      <div className="text-center mt-8">
+      {/* External GitHub Projects CTA */}
+      <div className="text-center mt-12">
         <GlassButton
           href="https://github.com/stars/ffaakkhhrrii/lists/personal-project"
           external
           variant="accent"
           size="lg"
+          className="text-xs sm:text-sm font-mono"
         >
-          See more of my personal projects
+          Explore More Projects on GitHub →
         </GlassButton>
       </div>
     </Section>

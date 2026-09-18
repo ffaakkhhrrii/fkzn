@@ -22,9 +22,9 @@ export const GlassCard: React.FC<CardProps> = ({
   return (
     <div
       className={cn(
-        'rounded-lg p-6 transition-all duration-300',
+        'rounded-md p-6 transition-all duration-200',
         variantClasses[variant],
-        hover && 'card-hover hover-glow cursor-pointer',
+        hover && 'card-hover cursor-pointer',
         className
       )}
     >

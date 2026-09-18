@@ -19,17 +19,17 @@ export const Badge: React.FC<BadgeProps> = ({
   onClick,
 }) => {
   const variantClasses = {
-    default: 'glass bg-surface/60 text-primary border-border',
-    accent: 'glass bg-primary/20 text-primary border-primary/30',
-    secondary: 'glass bg-secondary/20 text-secondary border-secondary/30',
+    default: 'glass bg-surface/80 text-primary border-border hover:border-primary/30',
+    accent: 'glass bg-primary/10 text-primary border-primary/25 hover:border-primary/50',
+    secondary: 'glass bg-secondary/10 text-secondary border-secondary/25 hover:border-secondary/50',
   };
 
   return (
     <span
       onClick={onClick}
       className={cn(
-        'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium',
-        'transition-all duration-300 hover:scale-105',
+        'inline-flex items-center px-2.5 py-1 rounded-[4px] text-xs md:text-sm font-medium',
+        'transition-all duration-200',
         variantClasses[variant],
         className
       )}

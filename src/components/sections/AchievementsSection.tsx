@@ -22,24 +22,24 @@ export const AchievementsSection: React.FC = () => {
     >
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 animate-fade-in">
-        <div className="glass rounded-lg p-6 text-center">
+        <div className="glass rounded-md p-6 text-center border border-border/80">
           <div className="text-4xl md:text-5xl font-bold text-accent mb-2">
             {achievements.length}
           </div>
           <div className="text-secondary font-normal">Total Awards</div>
         </div>
 
-        <div className="glass rounded-lg p-6 text-center">
+        <div className="glass rounded-md p-6 text-center border border-border/80">
           <div className="text-4xl md:text-5xl font-bold text-accent mb-2">2</div>
           <div className="text-secondary font-normal">1st Place Wins</div>
         </div>
 
-        <div className="glass rounded-lg p-6 text-center">
+        <div className="glass rounded-md p-6 text-center border border-border/80">
           <div className="text-4xl md:text-5xl font-bold text-accent mb-2">2</div>
           <div className="text-secondary font-normal">Provincial Level</div>
         </div>
 
-        <div className="glass rounded-lg p-6 text-center">
+        <div className="glass rounded-md p-6 text-center border border-border/80">
           <div className="text-4xl md:text-5xl font-bold text-accent mb-2">4</div>
           <div className="text-secondary font-normal">Regional Level</div>
         </div>

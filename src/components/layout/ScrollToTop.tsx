@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/utils';
 import { useScrollPosition } from '@/hooks';
-import { ChevronDownIcon } from '@/components/common';
+import { ChevronUpIcon } from '@/components/common';
 
 /**
  * ScrollToTop Component
@@ -29,17 +29,16 @@ export const ScrollToTop: React.FC = () => {
       onClick={scrollToTop}
       className={cn(
         'fixed bottom-8 right-8 z-50',
-        'glass-strong rounded-full p-4',
+        'glass-strong rounded-md p-3 border border-border/80 shadow-md',
         'text-primary hover:text-secondary',
-        'transition-all duration-300 hover-glow',
-        'transform rotate-180',
+        'transition-all duration-200 hover-glow cursor-pointer',
         isVisible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-10 pointer-events-none'
       )}
       aria-label="Scroll to top"
     >
-      <ChevronDownIcon size={24} />
+      <ChevronUpIcon size={20} />
     </button>
   );
 };

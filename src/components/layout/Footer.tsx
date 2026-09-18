@@ -70,10 +70,10 @@ export const Footer: React.FC = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="glass rounded-full p-3 text-primary hover:text-secondary hover:scale-110 transition-all duration-300"
+                    className="glass rounded-md p-2.5 text-primary hover:text-secondary hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200 border border-border/80"
                     aria-label={social.name}
                   >
-                    <Icon size={20} />
+                    <Icon size={18} />
                   </a>
                 );
               })}

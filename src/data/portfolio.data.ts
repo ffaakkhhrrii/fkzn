@@ -65,7 +65,7 @@ export const portfolioData: PortfolioData = {
       location: 'Jakarta, Indonesia / Hybrid',
       duration: 'May 2024 - March 2025',
       description:
-        'Developed and maintained procurement platforms across Android and web, delivering end-to-end features from backend architecture to deployment. Collaborated cross-functionally with developers and implementors to ensure smooth delivery and issue resolution.',
+        'Assisted in the development and maintenance of procurement platforms across Android and web, with a focus on bug fixing and testing. Collaborated with senior developers to ensure application stability and improve testing efficiency.',
       technologies: [
         'PHP',
         'Kotlin',
@@ -84,7 +84,7 @@ export const portfolioData: PortfolioData = {
       institution: 'Binus Online University',
       location: 'Indonesia',
       duration: '2025 - 2029',
-      gpa: '4.00',
+      gpa: '3.96',
       relevantCoursework: 'Data Structures, Algorithms, Software Design, etc.',
     },
     {

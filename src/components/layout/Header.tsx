@@ -75,7 +75,7 @@ export const Header: React.FC = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden glass rounded-lg p-2 text-primary hover:text-secondary transition-colors"
+            className="md:hidden glass rounded-md p-2 text-primary hover:text-secondary transition-colors border border-border"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (

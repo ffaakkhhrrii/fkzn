@@ -19,7 +19,7 @@ export const GlassButton: React.FC<ButtonProps> = ({
   external = false,
 }) => {
   const baseClasses = cn(
-    'glass rounded-lg font-medium transition-all duration-300',
+    'glass rounded-md font-medium transition-all duration-200',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
     'disabled:opacity-50 disabled:cursor-not-allowed',
     'hover-glow'

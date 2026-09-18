@@ -4,41 +4,54 @@ import { Education } from '@/types';
 
 interface EducationCardProps {
   education: Education;
+  isLast?: boolean;
 }
 
 /**
  * EducationCard Component
- * Displays education information with degree, institution, and duration
+ * Displays education information with an editorial timeline format
  */
 export const EducationCard: React.FC<EducationCardProps> = ({ education }) => {
   return (
-    <GlassCard hover className="h-full">
-      <h3 className="text-xl md:text-2xl font-bold text-primary mb-1">
-        {education.degree}
-      </h3>
-
-      <p className="text-lg text-secondary font-semibold mb-2">
-        {education.institution}
-      </p>
-
-      <div className="flex flex-wrap gap-4 text-sm text-text-secondary mb-3 font-normal">
-        <span>{education.location}</span>
-        <span aria-hidden="true">•</span>
-        <span>{education.duration}</span>
+    <div className="relative pl-9 sm:pl-11">
+      {/* Node marker on spine */}
+      <div className="absolute left-0 top-3 z-10">
+        <div className="w-5 h-5 rounded-full bg-white border-2 border-primary flex items-center justify-center shadow-sm">
+          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+        </div>
       </div>
 
-      {education.gpa && education.gpa !== '-' && (
-        <p className="text-text-secondary mb-2 font-normal">
-          <span className="font-semibold">Latest GPA:</span> {education.gpa}
-        </p>
-      )}
+      <GlassCard hover className="p-5 sm:p-6 border border-border/80">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-1.5">
+          <h3 className="text-lg md:text-xl font-bold text-primary tracking-tight">
+            {education.degree}
+          </h3>
+          <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-[4px] bg-primary/10 text-primary border border-primary/20 w-fit shrink-0">
+            {education.duration}
+          </span>
+        </div>
 
-      {education.relevantCoursework && (
-        <p className="text-text-secondary font-normal">
-          <span className="font-semibold">Relevant Coursework:</span>{' '}
-          {education.relevantCoursework}
+        <p className="text-base text-secondary font-medium mb-2.5">
+          {education.institution}
         </p>
-      )}
-    </GlassCard>
+
+        <div className="flex flex-wrap items-center gap-3 text-xs text-text-secondary mb-3 font-normal">
+          <span>{education.location}</span>
+          {education.gpa && education.gpa !== '-' && (
+            <>
+              <span aria-hidden="true">•</span>
+              <span className="font-semibold text-primary">Latest GPA: {education.gpa}</span>
+            </>
+          )}
+        </div>
+
+        {education.relevantCoursework && (
+          <p className="text-sm text-text-secondary leading-relaxed font-normal pt-2.5 border-t border-border/70">
+            <span className="font-semibold text-primary">Relevant Coursework:</span>{' '}
+            {education.relevantCoursework}
+          </p>
+        )}
+      </GlassCard>
+    </div>
   );
 };
