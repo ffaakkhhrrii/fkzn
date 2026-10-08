@@ -37,6 +37,9 @@ export const AboutSection: React.FC = () => {
     ...(skills.llmTooling && skills.llmTooling.length > 0
       ? [{ title: 'LLM Tooling', skills: skills.llmTooling }]
       : []),
+    ...(skills.testing && skills.testing.length > 0
+      ? [{ title: 'Testing', skills: skills.testing }]
+      : []),
   ];
 
   const whatIDo = [

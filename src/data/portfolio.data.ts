@@ -4,11 +4,11 @@ export const portfolioData: PortfolioData = {
   personalInfo: {
     name: 'Fakhri Zain',
     title: 'Software Developer',
-    location: 'Jakarta, Indonesia',
+    location: 'East Jakarta, Indonesia',
     email: 'fakhrizain9@gmail.com',
     phone: '+62 851-7690-1068',
     shortBio: 'Software Developer focused on creating clean, efficient, and impactful software solutions.',
-    bio: "I'm a Software Developer with 1-3 years of experience building applications that solve real problems. I enjoy the process of breaking down complex challenges whether it's designing a feature from scratch or debugging something no one else wants to touch. I've worked both independently and in collaborative team settings, and I pick up new tools and technologies quickly whenever a project calls for it. Outside of writing code, I'm always looking for ways to sharpen my skills and take on projects that push me to learn something new.",
+    bio: "I'm a Software Developer with 2+ years of experience building applications that solve real problems. I enjoy the process of breaking down complex challenges whether it's designing a feature from scratch or debugging something no one else wants to touch. I've worked both independently and in collaborative team settings, and I pick up new tools and technologies quickly whenever a project calls for it. Outside of writing code, I'm always looking for ways to sharpen my skills and take on projects that push me to learn something new.",
     profilePhoto: {
       path: '/assets/images/profile.png',
       alt: 'Fakhri Zain',
@@ -29,12 +29,14 @@ export const portfolioData: PortfolioData = {
       'JavaScript',
       'PHP',
       'Python',
-      'C#'
+      'C#',
+      'TypeScript'
     ],
-    versionControl: ['Bitbucket', 'GIT'],
-    databases: ['PostgreSQL', 'MySQL', 'SQL Server Database', 'Firebase'],
-    frameworks: ['CodeIgniter', 'Laravel', 'Tailwind', 'Jetpack Compose', 'Flutter'],
-    llmTooling: ['LangChain'],
+    versionControl: ['Bitbucket', 'Git', 'GitLab'],
+    databases: ['PostgreSQL', 'MySQL', 'SQL Server', 'Firebase'],
+    frameworks: ['CodeIgniter', 'Laravel', 'Tailwind CSS', 'Jetpack Compose', 'Room', 'Flutter', 'React', 'FastAPI', 'GraphQL'],
+    llmTooling: ['LangChain (LLM application development)'],
+    testing: ['Playwright'],
   },
 
   experience: [
@@ -44,17 +46,20 @@ export const portfolioData: PortfolioData = {
       location: 'Jakarta, Indonesia / Hybrid',
       duration: 'June 2025 - Present',
       description:
-        'Developed and maintained procurement platforms across Android and web, delivering end-to-end features from backend architecture to deployment. Collaborated cross-functionally with developers and implementors to ensure smooth delivery and issue resolution.\n• LLM Integrations – Designed and implemented LLM-powered features across platforms, including backend logic and AI-assisted pipelines, to support business insight generation.\n• API Integration – Built and integrated backend APIs to support seamless communication between the Android application and backend services.\n• System Design – Architected scalable, database-driven systems to replace hardcoded logic and improve maintainability.\n• Feature Development – Building and implementing new features based on business requirements.\n• Documentation – Produced technical documentation covering system architecture and feature logic to support long-term maintainability and team onboarding.\n• Team Collaboration – Worked closely with developers and implementors to troubleshoot issues, align on requirements, and ship features across platforms.',
+        'Developed and maintained procurement platforms across Android and web, delivering end-to-end features from backend architecture to deployment. Collaborated cross-functionally with developers and implementors to ensure smooth delivery and issue resolution.\n• LLM Integrations – Designed and implemented LLM-powered features across platforms, including backend logic and AI-assisted pipelines, to support business insight generation.\n• Test Automation – Contributed to a Playwright + TypeScript test automation website with AI that generates test scenarios from prompts.\n• API Integration – Built and integrated backend APIs to support seamless communication between the Android application and backend services.\n• System Design – Architected scalable, database-driven systems to replace hardcoded logic and improve maintainability.\n• Feature Development – Building and implementing new features based on business requirements.\n• Documentation – Produced technical documentation covering system architecture and feature logic to support long-term maintainability and team onboarding.\n• Team Collaboration – Worked closely with developers and implementors to troubleshoot issues, align on requirements, and ship features across platforms.',
       technologies: [
         'Python',
         'PHP',
         'Kotlin',
         'JavaScript',
+        'TypeScript',
         'Tailwind CSS',
         'PostgreSQL',
         'LangChain',
         'CodeIgniter 4',
         'Laravel',
+        'FastAPI',
+        'Playwright',
         'Room',
         'GraphQL',
       ],
@@ -84,14 +89,14 @@ export const portfolioData: PortfolioData = {
       institution: 'Binus Online University',
       location: 'Indonesia',
       duration: '2025 - 2029',
-      gpa: '3.96',
+      gpa: '3.95',
       relevantCoursework: 'Data Structures, Algorithms, Software Design, etc.',
     },
     {
-      degree: 'Network and Application Information Systems',
+      degree: 'Computer and Network Engineering',
       institution: 'Vocational Highschool 26 Jakarta',
       location: 'Jakarta, Indonesia',
-      duration: '2021 - 2024',
+      duration: '2021 - 2025',
     },
   ],
 
@@ -108,6 +113,13 @@ export const portfolioData: PortfolioData = {
       duration: '2023 - 2024',
       description:
         'Teaching junior members, in learning the basic fundamentals of android application development.',
+    },
+    {
+      role: 'Religious Affairs Division Leader - Student Council',
+      organization: 'Vocational High School 26 Jakarta',
+      duration: '2022 - 2023',
+      description:
+        'Led the division in planning, supervising, and running religious activities at school.',
     },
   ],
 
@@ -186,7 +198,7 @@ export const portfolioData: PortfolioData = {
     {
       title: '4th Place Cloud Computing Club (Web Design Competition) DKI Jakarta Province 2024',
       organization: 'Yayasan Sagasitas Indonesia',
-      date: 'Mar 2024',
+      date: 'Feb 2024',
       description: 'Achieved 4th place in the Cloud Computing Club (Web Design Competition) at provincial level',
       featured: false,
     },
