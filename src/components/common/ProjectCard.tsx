@@ -4,83 +4,105 @@ import { Badge } from './Badge';
 import { GlassButton } from './GlassButton';
 import { GithubIcon, ExternalLinkIcon } from './Icons';
 import { Project } from '@/types';
+import { cn } from '@/utils';
 
 interface ProjectCardProps {
   project: Project;
+  /** Large two-column layout for the lead project */
+  featured?: boolean;
 }
 
+const ProjectLinks: React.FC<{ project: Project }> = ({ project }) => (
+  <div className="mt-6 flex flex-wrap gap-3">
+    {project.links.github && (
+      <GlassButton href={project.links.github} external variant="secondary" size="sm">
+        <GithubIcon size={16} />
+        Source Code
+      </GlassButton>
+    )}
+    {project.links.live && (
+      <GlassButton href={project.links.live} external variant="primary" size="sm">
+        <ExternalLinkIcon size={16} />
+        Live Demo
+      </GlassButton>
+    )}
+  </div>
+);
+
 /**
- * ProjectCard Component
- * Displays a project with 16:9 aspect preview, role, technologies, and action buttons
+ * ProjectCard
+ * Picture, name, what it does, stack, link. No overlay tags on the picture.
  */
-export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  return (
-    <GlassCard hover className="h-full flex flex-col p-5 sm:p-6 border border-border/80 group">
-      {/* 16:9 Project Image Preview */}
-      {project.images && project.images.length > 0 && (
-        <div className="mb-5 aspect-video rounded-md overflow-hidden bg-surface relative border border-border/60">
-          <img
-            src={project.images[0]}
-            alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-          {/* Subtle overlay corner tag */}
-          <div className="absolute top-2.5 right-2.5 z-10">
-            <span className="glass px-2.5 py-0.5 rounded-[4px] text-[11px] font-mono font-medium text-primary border border-border/80 shadow-xs">
-              {project.role}
-            </span>
-          </div>
-        </div>
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, featured = false }) => {
+  const { image } = project;
+
+  const picture = (
+    <div
+      className={cn(
+        'overflow-hidden rounded-md bg-white',
+        featured ? 'aspect-[4/3]' : 'aspect-video border border-border'
       )}
+    >
+      <img
+        src={image.src}
+        srcSet={image.srcSet}
+        sizes={featured ? '(min-width: 1024px) 600px, 100vw' : '(min-width: 1024px) 340px, (min-width: 640px) 50vw, 100vw'}
+        width={image.width}
+        height={image.height}
+        alt={`${project.name} app screens`}
+        loading="lazy"
+        decoding="async"
+        className={cn(
+          'h-full w-full transition-transform duration-300 ease-out group-hover:scale-[1.03]',
+          featured ? 'object-contain' : 'object-cover'
+        )}
+      />
+    </div>
+  );
 
-      {/* Project Info */}
-      <div className="flex-1 flex flex-col">
-        <h3 className="text-xl sm:text-2xl font-bold text-primary tracking-tight mb-2 group-hover:text-accent transition-colors">
-          {project.name}
-        </h3>
+  const description = (
+    <div
+      className="mt-3 text-base leading-relaxed text-secondary [&_a]:text-accent [&_a]:font-medium [&_a]:underline [&_a]:decoration-accent/30 [&_a]:underline-offset-4 hover:[&_a]:decoration-accent"
+      dangerouslySetInnerHTML={{ __html: project.description }}
+    />
+  );
 
-        <div
-          className="text-sm text-text-secondary mb-4 flex-1 leading-relaxed [&_a]:text-primary [&_a]:underline hover:[&_a]:text-accent"
-          dangerouslySetInnerHTML={{ __html: project.description }}
-        />
+  const stack = (
+    <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Built with">
+      {project.technologies.map((tech) => (
+        <li key={tech}>
+          <Badge>{tech}</Badge>
+        </li>
+      ))}
+    </ul>
+  );
 
-        {/* Technologies Badges */}
-        <div className="mb-5 pt-3 border-t border-border/60">
-          <div className="flex flex-wrap gap-1.5">
-            {project.technologies.map((tech, index) => (
-              <Badge key={index} variant="default" className="text-xs font-mono">
-                {tech}
-              </Badge>
-            ))}
-          </div>
+  if (featured) {
+    return (
+      <GlassCard hover className="group grid grid-cols-1 gap-8 p-5 sm:p-8 lg:grid-cols-12 lg:items-center">
+        <div className="lg:col-span-7">{picture}</div>
+        <div className="lg:col-span-5">
+          {project.highlight && (
+            <p className="text-sm font-semibold text-accent">{project.highlight}</p>
+          )}
+          <h3 className="mt-2 text-3xl font-bold">{project.name}</h3>
+          {description}
+          {stack}
+          <ProjectLinks project={project} />
         </div>
+      </GlassCard>
+    );
+  }
 
-        {/* Links Actions */}
-        <div className="flex items-center gap-3 pt-2 mt-auto">
-          {project.links.github && (
-            <GlassButton
-              href={project.links.github}
-              external
-              variant="primary"
-              size="sm"
-              className="flex items-center gap-2 text-xs font-mono"
-            >
-              <GithubIcon size={16} />
-              <span>Source Code</span>
-            </GlassButton>
-          )}
-          {project.links.live && (
-            <GlassButton
-              href={project.links.live}
-              external
-              variant="accent"
-              size="sm"
-              className="flex items-center gap-2 text-xs font-mono"
-            >
-              <ExternalLinkIcon size={16} />
-              <span>Live Demo</span>
-            </GlassButton>
-          )}
+  return (
+    <GlassCard hover className="group flex h-full flex-col gap-5 p-5 sm:grid sm:grid-cols-2 sm:gap-6 lg:flex">
+      {picture}
+      <div className="flex flex-1 flex-col">
+        <h3 className="text-2xl font-bold">{project.name}</h3>
+        {description}
+        <div className="mt-auto">
+          {stack}
+          <ProjectLinks project={project} />
         </div>
       </div>
     </GlassCard>

@@ -3,9 +3,11 @@ import { cn } from '@/utils';
 import { ButtonProps } from '@/types';
 
 /**
- * GlassButton Component
- * A button component with glassmorphism effect
- * Supports multiple variants and sizes
+ * Button
+ * primary / accent: solid green (the one main action per screen)
+ * secondary: outline
+ * ghost: text only
+ * Every size is at least 44px tall for touch.
  */
 export const GlassButton: React.FC<ButtonProps> = ({
   children,
@@ -19,33 +21,29 @@ export const GlassButton: React.FC<ButtonProps> = ({
   external = false,
 }) => {
   const baseClasses = cn(
-    'glass rounded-md font-medium transition-all duration-200',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
-    'disabled:opacity-50 disabled:cursor-not-allowed',
-    'hover-glow'
+    'inline-flex items-center justify-center gap-2 rounded-md font-semibold whitespace-nowrap',
+    'transition-[transform,background-color,border-color,color] duration-150 ease-out',
+    'hover:-translate-y-px active:translate-y-0 active:scale-[0.98]',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+    'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0'
   );
 
+  const solid = 'bg-accent text-white border border-accent hover:bg-accent-dark hover:border-accent-dark';
   const variantClasses = {
-    primary: 'bg-primary/10 text-primary hover:bg-primary/20 border-primary/20',
-    secondary: 'bg-secondary/20 text-primary hover:bg-secondary/30 border-secondary/30',
-    accent: 'bg-accent/10 text-primary hover:bg-accent/20 border-accent/20',
-    ghost: 'bg-transparent text-primary hover:bg-primary/10 border-transparent',
+    primary: solid,
+    accent: solid,
+    secondary: 'bg-white text-primary border border-border-dark hover:border-primary',
+    ghost: 'bg-transparent text-primary border border-transparent hover:bg-surface',
   };
 
   const sizeClasses = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    sm: 'min-h-[44px] px-4 text-sm',
+    md: 'min-h-[48px] px-5 text-[15px]',
+    lg: 'min-h-[52px] px-6 text-base',
   };
 
-  const classes = cn(
-    baseClasses,
-    variantClasses[variant],
-    sizeClasses[size],
-    className
-  );
+  const classes = cn(baseClasses, variantClasses[variant], sizeClasses[size], className);
 
-  // If href is provided, render as anchor tag
   if (href) {
     return (
       <a
@@ -60,14 +58,8 @@ export const GlassButton: React.FC<ButtonProps> = ({
     );
   }
 
-  // Otherwise, render as button
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      className={classes}
-    >
+    <button type={type} onClick={onClick} disabled={disabled} className={classes}>
       {children}
     </button>
   );

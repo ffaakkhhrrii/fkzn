@@ -1,126 +1,120 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { cn } from '@/utils';
-import { useScrollPosition, useIsMobile, useActiveSection } from '@/hooks';
+import { useScrollPosition, useActiveSection } from '@/hooks';
 import { MenuIcon, CloseIcon } from '@/components/common';
 import { NavItem } from '@/types';
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Achievements', href: '#achievements' },
   { label: 'Communities', href: '#communities' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Achievements', href: '#achievements' },
 ];
 
+const sectionIds = ['home', 'about', 'experience', 'achievements', 'communities', 'projects', 'contact'];
+
 /**
- * Header Component
- * Glassmorphism navbar with anchor navigation, scroll-based active state, and mobile menu
+ * Header
+ * Sticky bar. Full nav from 1024px; below that a menu button opens a full-width panel.
  */
 export const Header: React.FC = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const scrollY = useScrollPosition();
-  const isMobile = useIsMobile();
-
-  const sectionIds = navItems.map((item) => item.href.replace('#', ''));
   const activeSection = useActiveSection(sectionIds);
+  const isScrolled = scrollY > 8;
 
-  const isScrolled = scrollY > 50;
+  const close = () => setOpen(false);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [open]);
 
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
-        isScrolled ? 'glass-strong shadow-lg' : 'glass-subtle'
+        'fixed inset-x-0 top-0 z-40 bg-background/95 backdrop-blur-sm transition-[border-color] duration-200 border-b',
+        isScrolled || open ? 'border-border' : 'border-transparent'
       )}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo / Name */}
+      <nav className="wrap" aria-label="Main">
+        <div className="flex h-16 items-center justify-between">
           <a
             href="#home"
-            className="text-2xl md:text-3xl font-bold text-primary hover:text-secondary transition-colors duration-300"
-            onClick={closeMobileMenu}
+            onClick={close}
+            className="inline-flex min-h-[44px] items-center font-display text-xl font-bold text-primary"
           >
             Fakhri Zain
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          {/* Desktop */}
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
-              const itemId = item.href.replace('#', '');
-              const isActive = activeSection === itemId;
+              const isActive = activeSection === item.href.slice(1);
               return (
                 <a
                   key={item.href}
                   href={item.href}
+                  aria-current={isActive ? 'true' : undefined}
                   className={cn(
-                    'relative px-4 py-2 font-medium transition-all duration-300',
-                    'hover:text-secondary',
-                    isActive ? 'text-primary' : 'text-text-secondary'
+                    'relative inline-flex min-h-[44px] items-center px-3 text-[15px] font-medium transition-colors',
+                    'after:absolute after:inset-x-3 after:bottom-2 after:h-px after:origin-left after:bg-primary after:transition-transform after:duration-200',
+                    isActive
+                      ? 'text-primary after:scale-x-100'
+                      : 'text-secondary hover:text-primary after:scale-x-0 hover:after:scale-x-100'
                   )}
                 >
                   {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary rounded-full" />
-                  )}
                 </a>
               );
             })}
+            <a
+              href="#contact"
+              className="ml-3 inline-flex min-h-[44px] items-center rounded-md bg-accent px-4 text-sm font-semibold text-white transition-[transform,background-color] duration-150 hover:-translate-y-px hover:bg-accent-dark active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
+              Contact
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile / tablet toggle */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden glass rounded-md p-2 text-primary hover:text-secondary transition-colors border border-border"
-            aria-label="Toggle mobile menu"
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="lg:hidden -mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-primary hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
           >
-            {isMobileMenuOpen ? (
-              <CloseIcon size={24} />
-            ) : (
-              <MenuIcon size={24} />
-            )}
+            {open ? <CloseIcon size={24} /> : <MenuIcon size={24} />}
           </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobile && (
-          <div
-            className={cn(
-              'md:hidden overflow-hidden transition-all duration-300 ease-in-out',
-              isMobileMenuOpen ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'
-            )}
-          >
-            <div className="flex flex-col space-y-2 pt-2">
-              {navItems.map((item) => {
-                const itemId = item.href.replace('#', '');
-                const isActive = activeSection === itemId;
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    onClick={closeMobileMenu}
-                    className={cn(
-                      'relative px-4 py-3 font-medium transition-all duration-300',
-                      'hover:text-secondary',
-                      isActive ? 'text-primary' : 'text-text-secondary'
-                    )}
-                  >
-                    {item.label}
-                    {isActive && (
-                      <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary rounded-full" />
-                    )}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </nav>
+
+      {/* Mobile / tablet panel */}
+      <div
+        id="mobile-menu"
+        hidden={!open}
+        className="lg:hidden h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background"
+      >
+        <div className="wrap flex flex-col py-6">
+          {[...navItems, { label: 'Contact', href: '#contact' }].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={close}
+              className={cn(
+                'flex min-h-[56px] items-center border-b border-border font-display text-2xl font-semibold',
+                activeSection === item.href.slice(1) ? 'text-accent' : 'text-primary'
+              )}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
     </header>
   );
 };

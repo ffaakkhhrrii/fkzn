@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { Section, AchievementCard, GlassButton, Badge } from '@/components/common';
+import React from 'react';
+import { Section, AchievementCard } from '@/components/common';
 import { portfolioData } from '@/data/portfolio.data';
 
 /**
- * AchievementsSection Component
- * Complete list of achievements, awards, and recognitions
+ * Achievements
+ * Every award, newest first.
  */
 export const AchievementsSection: React.FC = () => {
-  const { achievements } = portfolioData;
-  const [showAll, setShowAll] = useState(false);
-
-  const featuredAchievements = achievements.filter((a) => a.featured);
-  const otherAchievements = achievements.filter((a) => !a.featured);
-  const displayedAchievements = showAll ? achievements : featuredAchievements;
+  // "Jun 2024" -> 202405 (parsed by hand: Safari rejects new Date("Jun 2024"))
+  const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+  const sortKey = (date: string) => {
+    const [mon, year] = date.trim().split(/\s+/);
+    return Number(year) * 100 + Math.max(0, months.indexOf(mon.slice(0, 3).toLowerCase()));
+  };
+  const achievements = [...portfolioData.achievements].sort((a, b) => sortKey(b.date) - sortKey(a.date));
 
   return (
     <Section
@@ -20,65 +21,11 @@ export const AchievementsSection: React.FC = () => {
       title="Achievements & Awards"
       subtitle="Recognition for excellence in competitions and projects"
     >
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 animate-fade-in">
-        <div className="glass rounded-md p-6 text-center border border-border/80">
-          <div className="text-4xl md:text-5xl font-bold text-accent mb-2">
-            {achievements.length}
-          </div>
-          <div className="text-secondary font-normal">Total Awards</div>
-        </div>
-
-        <div className="glass rounded-md p-6 text-center border border-border/80">
-          <div className="text-4xl md:text-5xl font-bold text-accent mb-2">2</div>
-          <div className="text-secondary font-normal">1st Place Wins</div>
-        </div>
-
-        <div className="glass rounded-md p-6 text-center border border-border/80">
-          <div className="text-4xl md:text-5xl font-bold text-accent mb-2">2</div>
-          <div className="text-secondary font-normal">Provincial Level</div>
-        </div>
-
-        <div className="glass rounded-md p-6 text-center border border-border/80">
-          <div className="text-4xl md:text-5xl font-bold text-accent mb-2">4</div>
-          <div className="text-secondary font-normal">Regional Level</div>
-        </div>
-      </div>
-
-      {/* Featured Badge */}
-      <div className="mb-8 text-center animate-slide-up">
-        <Badge variant="accent" className="text-base px-6 py-2">
-          {showAll ? 'All Achievements' : 'Featured Achievements'}
-        </Badge>
-      </div>
-
-      {/* Achievements Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {displayedAchievements.map((achievement, index) => (
-          <div
-            key={index}
-            className="animate-slide-up"
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            <AchievementCard achievement={achievement} />
-          </div>
+      <ul className="divide-y divide-border border-y border-border">
+        {achievements.map((achievement) => (
+          <AchievementCard key={achievement.title} achievement={achievement} />
         ))}
-      </div>
-
-      {/* Show More/Less */}
-      {otherAchievements.length > 0 && (
-        <div className="text-center">
-          <GlassButton
-            variant="accent"
-            size="lg"
-            onClick={() => setShowAll(!showAll)}
-          >
-            {showAll
-              ? 'Show Featured Only'
-              : `Show All Achievements (${achievements.length})`}
-          </GlassButton>
-        </div>
-      )}
+      </ul>
     </Section>
   );
 };

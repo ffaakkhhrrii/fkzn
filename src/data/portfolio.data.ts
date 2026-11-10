@@ -10,14 +10,14 @@ export const portfolioData: PortfolioData = {
     shortBio: 'Software Developer focused on creating clean, efficient, and impactful software solutions.',
     bio: "I'm a Software Developer with 2+ years of experience building applications that solve real problems. I enjoy the process of breaking down complex challenges whether it's designing a feature from scratch or debugging something no one else wants to touch. I've worked both independently and in collaborative team settings, and I pick up new tools and technologies quickly whenever a project calls for it. Outside of writing code, I'm always looking for ways to sharpen my skills and take on projects that push me to learn something new.",
     profilePhoto: {
-      path: '/assets/images/profile.png',
+      path: '/assets/images/opt/profile-800.jpg',
       alt: 'Fakhri Zain',
     },
   },
 
   socialLinks: {
     github: 'https://github.com/ffaakkhhrrii',
-    linkedin: 'https://www.linkedin.com/in/fakhri-zain-8286a1226/',
+    linkedin: 'https://linkedin.com/in/fakhrizain/',
     instagram: 'https://www.instagram.com/fkhri.zain',
   },
 
@@ -128,12 +128,13 @@ export const portfolioData: PortfolioData = {
       name: 'EDEAF',
       description:
         'EDEAF is an application that designed to assist the deaf students in their learning process, incorporating various engaging features to make the application smart, easy, and fun to use. This application idea is used for the Hackathon Competition by Pijar Camp ID',
+      featured: true,
       role: 'Developer',
       technologies: ['Kotlin', 'Firebase'],
       links: {
         github: 'https://github.com/ffaakkhhrrii/edeaf',
       },
-      images: ['/assets/images/edeaf.png'],
+      image: { src: '/assets/images/opt/edeaf-1280.jpg', srcSet: '/assets/images/opt/edeaf-640.jpg 640w, /assets/images/opt/edeaf-1280.jpg 911w', width: 911, height: 952 },
     },
     {
       name: 'Quick Notes',
@@ -144,7 +145,7 @@ export const portfolioData: PortfolioData = {
       links: {
         github: 'https://github.com/ffaakkhhrrii/quick_notes',
       },
-      images: ['/assets/images/quick_notes.png'],
+      image: { src: '/assets/images/opt/quick_notes-1280.jpg', srcSet: '/assets/images/opt/quick_notes-640.jpg 640w, /assets/images/opt/quick_notes-1280.jpg 1280w', width: 1280, height: 720 },
     },
     {
       name: 'Code Path',
@@ -155,7 +156,7 @@ export const portfolioData: PortfolioData = {
       links: {
         github: 'https://github.com/ffaakkhhrrii/code_path',
       },
-      images: ['/assets/images/code_path.png'],
+      image: { src: '/assets/images/opt/code_path-1280.jpg', srcSet: '/assets/images/opt/code_path-640.jpg 640w, /assets/images/opt/code_path-1280.jpg 1280w', width: 1280, height: 720 },
     },
     {
       name: 'Faith App',
@@ -165,7 +166,7 @@ export const portfolioData: PortfolioData = {
       links: {
         github: 'https://github.com/ffaakkhhrrii/faith-app',
       },
-      images: ['/assets/images/faith.png'],
+      image: { src: '/assets/images/opt/faith-1280.jpg', srcSet: '/assets/images/opt/faith-640.jpg 640w, /assets/images/opt/faith-1280.jpg 1280w', width: 1280, height: 720 },
     },
 
   ],
@@ -233,7 +234,7 @@ export const portfolioData: PortfolioData = {
     metaDescription:
       'Personal website of Fakhri Zain, a Software Developer specializing in Application Development. View my portfolio, projects, and get in touch.',
     keywords: 'software developer',
-    openGraphImage: '/assets/images/profile.png',
+    openGraphImage: '/assets/images/og.jpg',
   },
 
   theme: {

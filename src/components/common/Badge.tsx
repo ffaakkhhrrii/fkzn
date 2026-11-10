@@ -5,31 +5,23 @@ interface BadgeProps {
   children: React.ReactNode;
   variant?: 'default' | 'accent' | 'secondary';
   className?: string;
-  onClick?: () => void;
 }
 
 /**
- * Badge Component
- * A small badge component for tags, skills, etc.
+ * Badge
+ * Small flat tag for technologies.
  */
-export const Badge: React.FC<BadgeProps> = ({
-  children,
-  variant = 'default',
-  className = '',
-  onClick,
-}) => {
+export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', className = '' }) => {
   const variantClasses = {
-    default: 'glass bg-surface/80 text-primary border-border hover:border-primary/30',
-    accent: 'glass bg-primary/10 text-primary border-primary/25 hover:border-primary/50',
-    secondary: 'glass bg-secondary/10 text-secondary border-secondary/25 hover:border-secondary/50',
+    default: 'bg-surface text-secondary-dark',
+    accent: 'bg-accent-light text-accent-dark',
+    secondary: 'bg-white text-secondary border border-border',
   };
 
   return (
     <span
-      onClick={onClick}
       className={cn(
-        'inline-flex items-center px-2.5 py-1 rounded-[4px] text-xs md:text-sm font-medium',
-        'transition-all duration-200',
+        'inline-flex items-center rounded px-2 py-1 text-xs font-medium leading-none',
         variantClasses[variant],
         className
       )}

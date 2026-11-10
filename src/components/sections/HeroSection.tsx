@@ -1,80 +1,76 @@
 import React from 'react';
-import { GlassButton } from '@/components/common';
+import { GlassButton, LinkedinIcon } from '@/components/common';
 import { portfolioData } from '@/data/portfolio.data';
 
 /**
- * HeroSection Component
- * Modern editorial hero section with punchy typography and refined layout
+ * Hero
+ * Says what Fakhri does, for what kind of work, with facts on the first screen.
  */
 export const HeroSection: React.FC = () => {
-  const { personalInfo } = portfolioData;
+  const { personalInfo, socialLinks } = portfolioData;
+
+  // Same two lines as the LinkedIn headline: current job and current study
+  const facts = [
+    { value: '2+ years', label: 'Software Developer at ADW Consulting' },
+    { value: 'Computer Science', label: 'Student at Binus Online University' },
+  ];
 
   return (
-    <section id="home" className="section-container min-h-[calc(100vh-5rem)] flex items-center">
-      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        {/* Text Content */}
-        <div className="order-2 lg:order-1 lg:col-span-7 animate-slide-up">
-          <div className="mb-4">
-            <span className="glass px-3.5 py-1.5 rounded-md text-xs tracking-wide uppercase font-semibold text-secondary inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Welcome to my portfolio
-            </span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tracking-tight mb-4">
-            Hi, I'm{' '}
-            <span className="gradient-text">{personalInfo.name}</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-secondary mb-8 leading-relaxed max-w-2xl font-normal">
-            {personalInfo.shortBio}
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-4">
-            <GlassButton href="#projects" variant="accent" size="lg">
-              View My Work
-            </GlassButton>
-            <GlassButton href="#about" variant="ghost" size="lg">
-              About Me →
-            </GlassButton>
-          </div>
-        </div>
-
-        {/* Profile Image */}
-        <div className="order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end animate-fade-in">
-          <div className="relative">
-            {/* Ambient Background Glow */}
-            <div className="absolute -inset-4 bg-gradient-to-tr from-accent/10 to-transparent rounded-2xl blur-2xl opacity-60 pointer-events-none" />
-
-            {/* Profile Image Container with Crisp Micro-radius Frame */}
-            <div className="relative z-10 p-2 glass rounded-lg border border-border/80 shadow-lg">
-              <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-md overflow-hidden bg-surface relative">
-                <img
-                  src={personalInfo.profilePhoto.path}
-                  alt={personalInfo.profilePhoto.alt}
-                  className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
+    <section id="home" className="flex min-h-[100svh] items-center pt-16">
+      <div className="wrap py-8 sm:py-12 lg:py-16">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="animate-enter lg:col-span-7">
+            <div className="mb-5 flex items-center gap-3 sm:mb-6">
+              <img
+                src="/assets/images/opt/profile-480.jpg"
+                alt=""
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full object-cover lg:hidden"
+              />
+              <p className="text-sm font-medium text-secondary">
+                {personalInfo.title} · {personalInfo.location}
+              </p>
             </div>
 
-            {/* Status Badge */}
-            <div className="absolute -bottom-3 -right-3 z-20 glass-strong rounded-md px-4 py-2.5 border border-border shadow-md">
-              <div className="flex items-center gap-2.5">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </span>
-                <div>
-                  <div className="text-xs font-semibold text-primary leading-none">
-                    Available
-                  </div>
-                  <div className="text-[11px] text-secondary font-normal mt-0.5 leading-none">
-                    for opportunities
-                  </div>
+            <h1 className="text-[2.5rem] leading-[1.05] font-extrabold sm:text-6xl xl:text-[4.25rem]">
+              Hi, I'm {personalInfo.name}.
+            </h1>
+
+            <p className="mt-5 max-w-xl text-lg sm:mt-6 leading-relaxed text-secondary">
+              {personalInfo.shortBio}
+            </p>
+
+            <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+              <GlassButton href="#projects" variant="primary" size="lg">
+                See my projects
+              </GlassButton>
+              <GlassButton href={socialLinks.linkedin} external variant="secondary" size="lg">
+                <LinkedinIcon size={20} />
+                Connect with me
+              </GlassButton>
+            </div>
+
+            <dl className="mt-8 grid max-w-xl grid-cols-2 gap-4 border-t border-border pt-5 sm:mt-10 sm:gap-6 sm:pt-6">
+              {facts.map((f) => (
+                <div key={f.label}>
+                  <dt className="font-display text-xl font-bold text-accent">{f.value}</dt>
+                  <dd className="mt-1 text-sm leading-snug text-secondary">{f.label}</dd>
                 </div>
-              </div>
-            </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="hidden animate-enter lg:col-span-5 lg:block [animation-delay:120ms]">
+            <img
+              src={personalInfo.profilePhoto.path}
+              srcSet="/assets/images/opt/profile-480.jpg 480w, /assets/images/opt/profile-800.jpg 800w"
+              sizes="(min-width: 1024px) 420px, 100vw"
+              alt={`Portrait of ${personalInfo.name}`}
+              width={800}
+              height={800}
+              className="aspect-[4/5] w-full rounded-lg object-cover"
+            />
           </div>
         </div>
       </div>

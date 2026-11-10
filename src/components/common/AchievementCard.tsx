@@ -1,5 +1,4 @@
 import React from 'react';
-import { GlassCard } from './GlassCard';
 import { Achievement } from '@/types';
 import { formatDate } from '@/utils';
 
@@ -8,27 +7,19 @@ interface AchievementCardProps {
 }
 
 /**
- * AchievementCard Component
- * Displays an achievement with title, organization, date, and description
+ * AchievementCard
+ * One row of the awards list: date, title, organiser.
  */
 export const AchievementCard: React.FC<AchievementCardProps> = ({ achievement }) => {
   return (
-    <GlassCard hover className="h-full">
-      <h3 className="text-lg md:text-xl font-bold text-primary mb-2">
-        {achievement.title}
-      </h3>
-
-      <p className="text-secondary font-semibold mb-2">
-        {achievement.organization}
-      </p>
-
-      <p className="text-sm text-text-secondary mb-3 font-normal">
+    <li className="grid grid-cols-1 gap-1 py-5 md:grid-cols-12 md:gap-8">
+      <p className="text-sm font-medium text-text-light md:col-span-2 md:pt-0.5">
         {formatDate(achievement.date)}
       </p>
-
-      <p className="text-text-secondary leading-relaxed font-normal">
-        {achievement.description}
-      </p>
-    </GlassCard>
+      <h3 className="text-xl font-bold leading-snug md:col-span-6">
+        {achievement.title}
+      </h3>
+      <p className="text-sm text-secondary md:col-span-4 md:pt-0.5">{achievement.organization}</p>
+    </li>
   );
 };

@@ -51,9 +51,19 @@ export interface Education {
 }
 
 // Project Types
+export interface ProjectImage {
+  src: string;
+  srcSet?: string;
+  width: number;
+  height: number;
+}
+
 export interface Project {
   name: string;
   description: string;
+  /** One-line result, e.g. an award. Shown on the featured project. */
+  highlight?: string;
+  featured?: boolean;
   role: string;
   technologies: string[];
   links: {
@@ -61,7 +71,7 @@ export interface Project {
     live?: string;
     demo?: string;
   };
-  images: string[];
+  image: ProjectImage;
 }
 
 // Achievement Types

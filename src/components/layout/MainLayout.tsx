@@ -5,27 +5,32 @@ import {
   HeroSection,
   AboutSection,
   ExperienceSection,
+  AchievementsSection,
   CommunitiesSection,
   ProjectsSection,
-  AchievementsSection,
+  ContactSection,
 } from '@/components/sections';
 
 /**
- * MainLayout Component
- * Single-page layout with all sections rendered inline
+ * MainLayout
+ * Order: the person first, then experience and proof, then the work, then contact.
  */
 export const MainLayout: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
       <Header />
 
-      <main className="flex-1 pt-16 md:pt-20">
+      <main id="main" className="flex-1">
         <HeroSection />
         <AboutSection />
         <ExperienceSection />
+        <AchievementsSection />
         <CommunitiesSection />
         <ProjectsSection />
-        <AchievementsSection />
+        <ContactSection />
       </main>
 
       <Footer />

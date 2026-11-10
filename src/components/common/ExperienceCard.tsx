@@ -1,5 +1,4 @@
 import React from 'react';
-import { GlassCard } from './GlassCard';
 import { Badge } from './Badge';
 import { Experience } from '@/types';
 
@@ -8,72 +7,58 @@ interface ExperienceCardProps {
 }
 
 /**
- * ExperienceCard Component
- * Displays work experience in a modern vertical editorial timeline format
+ * ExperienceCard
+ * One row: period on the left, role and results on the right.
+ * Bullets written "Label – text" get the label in bold.
  */
 export const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
   const lines = experience.description.split('\n').filter(Boolean);
   const intro = lines.filter((line) => !line.startsWith('•'));
   const bullets = lines
     .filter((line) => line.startsWith('•'))
-    .map((line) => line.replace(/^•\s*/, ''));
+    .map((line) => line.replace(/^•\s*/, ''))
+    .map((line) => {
+      const m = line.match(/^(.{2,30}?)\s+[–-]\s+(.*)$/);
+      return m ? { label: m[1], text: m[2] } : { label: '', text: line };
+    });
 
   return (
-    <div className="relative pl-9 sm:pl-12">
-      {/* Node status on timeline spine */}
-      <div className="absolute left-0 top-3 z-10">
-        <div className="w-5 h-5 rounded-full bg-white border-2 border-primary flex items-center justify-center shadow-sm">
-          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-        </div>
+    <article className="grid grid-cols-1 gap-3 md:grid-cols-12 md:gap-10">
+      <div className="md:col-span-3">
+        <p className="text-sm font-semibold text-primary">{experience.duration}</p>
+        <p className="mt-1 text-sm text-text-light">{experience.location}</p>
       </div>
 
-      <GlassCard hover className="p-6 sm:p-7 border border-border/80">
-        {/* Header with Title, Company & Duration */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold text-primary tracking-tight">
-              {experience.position}
-            </h3>
-            <p className="text-base text-secondary font-medium mt-0.5">
-              {experience.company}
-            </p>
-          </div>
-          <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-[4px] bg-primary/10 text-primary border border-primary/20 w-fit shrink-0">
-            {experience.duration}
-          </span>
-        </div>
+      <div className="md:col-span-9">
+        <h3 className="text-2xl font-bold">{experience.position}</h3>
+        <p className="mt-1 font-medium text-accent">{experience.company}</p>
 
-        {/* Location */}
-        <div className="text-xs text-secondary font-mono mb-4">
-          {experience.location}
-        </div>
+        {intro.map((paragraph) => (
+          <p key={paragraph} className="mt-4 text-base leading-relaxed text-secondary">
+            {paragraph}
+          </p>
+        ))}
 
-        {/* Description & Responsibilities */}
-        <div className="text-text-secondary mb-5 leading-relaxed text-sm md:text-base font-normal space-y-2">
-          {intro.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
+        {bullets.length > 0 && (
+          <ul className="mt-4 space-y-3">
+            {bullets.map((b) => (
+              <li key={b.text} className="relative pl-5 text-base leading-relaxed text-secondary">
+                <span aria-hidden="true" className="absolute left-0 top-[0.7em] h-1.5 w-1.5 rounded-full bg-accent" />
+                {b.label && <strong className="font-semibold text-primary">{b.label} – </strong>}
+                {b.text}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Technologies">
+          {experience.technologies.map((tech) => (
+            <li key={tech}>
+              <Badge>{tech}</Badge>
+            </li>
           ))}
-          {bullets.length > 0 && (
-            <ul className="space-y-2 mt-3 pt-3 border-t border-border/70">
-              {bullets.map((item, index) => (
-                <li key={index} className="flex items-start gap-2.5 text-sm text-secondary">
-                  <span className="text-primary font-bold text-xs mt-0.5 select-none">▹</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/70">
-          {experience.technologies.map((tech, index) => (
-            <Badge key={index} variant="default" className="text-xs font-mono">
-              {tech}
-            </Badge>
-          ))}
-        </div>
-      </GlassCard>
-    </div>
+        </ul>
+      </div>
+    </article>
   );
 };
