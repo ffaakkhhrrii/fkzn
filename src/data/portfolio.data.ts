@@ -160,13 +160,36 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: 'Faith App',
-      description: "Faith is an Android app that helps Muslims in Indonesia with daily worship — prayer times, reading the Quran, and prayer reminders. It's the mobile version of the <a href='https://faith-sandy-pi.vercel.app/' target='_blank' rel='noopener noreferrer'>Faith Web</a>",
+      description: "Faith is an Android app that helps Muslims in Indonesia with daily worship — prayer times, reading the Quran, and prayer reminders. It's the mobile version of the <a href='https://faith.fkzn.my.id/' target='_blank' rel='noopener noreferrer'>Faith Web</a>",
       role: 'Developer',
       technologies: ['Kotlin', 'Jetpack Compose', 'Dagger Hilt', 'Room', 'DataStore', 'Glance'],
       links: {
         github: 'https://github.com/ffaakkhhrrii/faith-app',
       },
       image: { src: '/assets/images/opt/faith-1280.jpg', srcSet: '/assets/images/opt/faith-640.jpg 640w, /assets/images/opt/faith-1280.jpg 1280w', width: 1280, height: 720 },
+    },
+    {
+      name: 'Faith Web',
+      description:
+        "A web app for daily worship: today's prayer times for any city in Indonesia, one verse a day, and all 114 Surahs with Indonesian translation and tafsir. It's the web version of the Faith App.",
+      role: 'Developer',
+      technologies: ['Next.js', 'TypeScript', 'TanStack Query', 'Tailwind CSS'],
+      links: {
+        github: 'https://github.com/ffaakkhhrrii/faith',
+        live: 'https://faith.fkzn.my.id/',
+      },
+      image: { src: '/assets/images/opt/faith_web-1280.jpg', srcSet: '/assets/images/opt/faith_web-640.jpg 640w, /assets/images/opt/faith_web-1280.jpg 1280w', width: 1280, height: 720 },
+    },
+    {
+      name: 'CNN Prediction',
+      description:
+        'A web app that classifies images into the 10 CIFAR-10 categories (airplane, car, bird, cat, deer, dog, frog, horse, ship, truck). Upload an image and a tuned CNN model with BatchNorm and Dropout (80% test accuracy) returns the predicted class along with the probability for each class.',
+      role: 'Developer',
+      technologies: ['Python', 'TensorFlow', 'Keras', 'Flask'],
+      links: {
+        live: 'https://cnn-prediction.fkzn.my.id/',
+      },
+      image: { src: '/assets/images/opt/cnn_prediction-1280.jpg', srcSet: '/assets/images/opt/cnn_prediction-640.jpg 640w, /assets/images/opt/cnn_prediction-1280.jpg 1280w', width: 1280, height: 1041 },
     },
 
   ],
