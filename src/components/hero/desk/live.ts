@@ -162,9 +162,12 @@ export function mountDesk(root: HTMLElement, options: DeskOptions = {}): () => v
     hideTimer = window.setTimeout(() => delete hint.dataset.show, 120);
   }
   toys.forEach((g) => {
+    // Anchor the chip to what is visible: the group's own box also counts the clipped,
+    // scrolled-away code and the hidden fallen mug and puddle.
+    const anchor = ({ monitor: q('.dk-scr-bg'), mug: mugUp } as Record<string, Element>)[g.dataset.toy!] ?? g;
     const enter = () => {
       g.setAttribute('data-hover', '');
-      showHint(g, g.dataset.hint ?? '');
+      showHint(anchor, g.dataset.hint ?? '');
     };
     const leave = () => {
       g.removeAttribute('data-hover');
