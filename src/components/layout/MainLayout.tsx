@@ -2,8 +2,8 @@ import React from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { useSmoothScroll } from '@/hooks';
+import { Hero } from '@/components/hero/Hero';
 import {
-  HeroSection,
   AboutSection,
   ExperienceSection,
   AchievementsSection,
@@ -28,7 +28,7 @@ export const MainLayout: React.FC = () => {
       <Header />
 
       <main id="main" className="flex-1">
-        <HeroSection />
+        <Hero />
         <AboutSection />
         <ExperienceSection />
         <AchievementsSection />

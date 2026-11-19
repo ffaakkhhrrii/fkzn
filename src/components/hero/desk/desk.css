@@ -1,0 +1,253 @@
+/* Desk diorama: kit tokens mapped onto the site's palette.
+   Light is the default; dark follows the site's `.dark` class on <html>
+   or a `data-theme="dark"` attribute on any ancestor. */
+.desk {
+  --anatomy-paper: rgb(var(--c-bg, 250 250 248));
+  --anatomy-face: #ffffff;
+  --anatomy-top: #ffffff;
+  --anatomy-shade-0: #dcdcd8;
+  --anatomy-shade-1: #e5e5e1;
+  --anatomy-shade-2: #ededea;
+  --anatomy-shade-3: #f4f4f1;
+  --anatomy-lit-top: #ffffff;
+  --anatomy-lit-shade: #eeeeea;
+  --anatomy-hi: #1c1c1a;
+  --anatomy-mid: #85857f;
+  --anatomy-lo: #b2b2ac;
+  --anatomy-faint: #d3d3ce;
+  --anatomy-lit: #1c1c1a;
+  --anatomy-halo: #8a8a80;
+  --anatomy-halo-opacity: 0.3;
+  --anatomy-dot: #3a3a36;
+  --anatomy-weight: 0.6px;
+  --anatomy-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --anatomy-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --desk-ink: #1c1c1a;
+  --desk-accent: #1e5e46;
+  --desk-accent-screen: #6fbf98;
+  --desk-glass-off: #22221f;
+  --desk-screen: #1c1c1a;
+  --desk-screen-text: #f2f2ee;
+  --desk-screen-dim: #8d8d86;
+  --desk-screen-pane: #252523;
+  --desk-screen-line: #3a3a37;
+  --desk-hole: #c9c9c3;
+  --desk-well: #e2e2de;
+  --desk-case-in: #d9d9d4;
+  --desk-board: #cfcfca;
+  --desk-sheen: rgba(255, 255, 255, 0.07);
+  --desk-mat: #ffffff;
+  --desk-photo-bg: #e8e8e4;
+  --desk-blade: #d8d8d3;
+  --desk-coffee: #3b2f28;
+}
+
+:root.dark .desk,
+[data-theme='dark'] .desk {
+  --anatomy-face: #262624;
+  --anatomy-top: #262624;
+  --anatomy-shade-0: #151513;
+  --anatomy-shade-1: #191917;
+  --anatomy-shade-2: #1d1d1b;
+  --anatomy-shade-3: #21211f;
+  --anatomy-lit-top: #2c2c29;
+  --anatomy-lit-shade: #222220;
+  --anatomy-hi: #e6e6e0;
+  --anatomy-mid: #75756f;
+  --anatomy-lo: #4a4a46;
+  --anatomy-faint: #32322f;
+  --anatomy-lit: #fafaf8;
+  --anatomy-halo: #000000;
+  --anatomy-halo-opacity: 0.7;
+  --anatomy-dot: #e6e6e0;
+
+  --desk-ink: #fafaf8;
+  --desk-accent: #6fbf98;
+  --desk-glass-off: #0c0c0b;
+  --desk-screen: #121211;
+  --desk-hole: #0e0e0d;
+  --desk-well: #141413;
+  --desk-case-in: #141413;
+  --desk-board: #1a1a18;
+  --desk-sheen: rgba(255, 255, 255, 0.06);
+  --desk-mat: #d9d9d3;
+  --desk-photo-bg: #2a2a27;
+  --desk-blade: #3a3a36;
+  --desk-coffee: #4d3a2e;
+}
+
+/* ── kit primitives ─────────────────────────────────────────── */
+.desk-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.desk-svg path, .desk-svg circle, .desk-svg rect, .desk-svg line { vector-effect: non-scaling-stroke; }
+.desk .iso-fill { fill: var(--anatomy-paper); stroke: none; }
+.desk .iso-solid[data-lit] > .iso-fill { fill: var(--anatomy-face); }
+.desk .iso-shade, .desk .iso-top { stroke: none; }
+.desk .iso-shade[data-shade='0'] { fill: var(--anatomy-shade-0); }
+.desk .iso-shade[data-shade='1'] { fill: var(--anatomy-shade-1); }
+.desk .iso-shade[data-shade='2'] { fill: var(--anatomy-shade-2); }
+.desk .iso-shade[data-shade='3'] { fill: var(--anatomy-shade-3); }
+.desk .iso-top { fill: var(--anatomy-top); }
+.desk .iso-solid[data-lit] > .iso-top { fill: var(--anatomy-lit-top); }
+.desk .iso-solid[data-lit] > .iso-shade { fill: var(--anatomy-lit-shade); }
+.desk .iso-solid[data-seamless] > .iso-shade, .desk .iso-solid[data-seamless] > .iso-top { stroke-width: 0.4; stroke-linejoin: round; }
+.desk .iso-solid[data-seamless] > .iso-shade[data-shade='0'] { stroke: var(--anatomy-shade-0); }
+.desk .iso-solid[data-seamless] > .iso-shade[data-shade='1'] { stroke: var(--anatomy-shade-1); }
+.desk .iso-solid[data-seamless] > .iso-shade[data-shade='2'] { stroke: var(--anatomy-shade-2); }
+.desk .iso-solid[data-seamless] > .iso-shade[data-shade='3'] { stroke: var(--anatomy-shade-3); }
+.desk .iso-solid[data-seamless] > .iso-top { stroke: var(--anatomy-top); }
+.desk .iso-solid[data-lit] > .iso-edge { stroke: var(--anatomy-lit); }
+.desk .iso-halo { fill: var(--anatomy-halo); stroke: none; filter: blur(9px); opacity: var(--anatomy-halo-opacity); transform: translateY(3px); }
+.desk .iso-line { fill: none; stroke: var(--anatomy-lo); stroke-width: var(--anatomy-weight); stroke-linecap: round; stroke-linejoin: round; }
+.desk .iso-line[data-tone='hi'] { stroke: var(--anatomy-hi); }
+.desk .iso-line[data-tone='mid'] { stroke: var(--anatomy-mid); }
+.desk .iso-line[data-tone='lo'] { stroke: var(--anatomy-lo); }
+.desk .iso-line[data-tone='faint'] { stroke: var(--anatomy-faint); }
+.desk .iso-line[data-tone='lit'] { stroke: var(--anatomy-lit); }
+.desk .iso-line[data-dotted] { stroke-dasharray: 0.01 2.6; stroke-width: 0.9; }
+.desk .iso-dots circle { fill: var(--anatomy-dot); stroke: none; opacity: 0.32; }
+.desk .iso-dots[data-tone='hi'] circle { opacity: 0.85; }
+.desk .iso-dots[data-tone='mid'] circle { opacity: 0.45; }
+.desk .iso-dots[data-tone='lo'] circle { opacity: 0.22; }
+.desk .tb-body { fill: var(--anatomy-shade-2); stroke: none; }
+.desk .tb-shine { fill: var(--anatomy-top); stroke: none; }
+.desk .tb-shade { fill: var(--anatomy-shade-0); stroke: none; }
+
+/* ── figure parts ───────────────────────────────────────────── */
+.desk .dk-room-halo { opacity: calc(var(--anatomy-halo-opacity) * 0.5); }
+.desk .dk-hole { fill: var(--desk-hole); }
+.desk .dk-well { fill: var(--desk-well); }
+.desk .dk-plate { fill: var(--anatomy-shade-1); }
+.desk .dk-port { fill: var(--desk-hole); stroke: var(--anatomy-lo); stroke-width: 0.4; }
+.desk .dk-screw, .desk .dk-pad { fill: var(--anatomy-mid); }
+.desk .dk-screw-head { fill: var(--anatomy-shade-2); }
+.desk .dk-case-in { fill: var(--desk-case-in); }
+.desk .dk-board { fill: var(--desk-board); }
+.desk .dk-fan-frame { fill: var(--anatomy-shade-1); stroke: var(--anatomy-lo); stroke-width: 0.5; }
+.desk .dk-fan-well { fill: var(--desk-well); }
+.desk .dk-blade { fill: var(--desk-blade); stroke: var(--anatomy-lo); stroke-width: 0.4; stroke-linejoin: round; }
+.desk .dk-hub { fill: var(--anatomy-shade-3); stroke: var(--anatomy-lo); stroke-width: 0.5; }
+.desk .dk-sheen { fill: var(--desk-sheen); }
+.desk .dk-sheen-frame { fill: rgba(255,255,255,.45); }
+:root.dark .desk .dk-sheen-frame, [data-theme="dark"] .desk .dk-sheen-frame { fill: rgba(255,255,255,.08); }
+
+.desk .dk-glass { fill: var(--desk-glass-off); }
+.desk .dk-scr-bg { fill: var(--desk-glass-off); }
+
+.desk .dk-scr-glow { fill: var(--desk-screen); }
+.desk .dk-scr-bar { fill: #2a2a27; }
+.desk .dk-scr-dot { fill: #4a4a46; }
+.desk .dk-term { fill: var(--desk-screen-text); font-family: var(--anatomy-mono); }
+.desk .dk-term-dim { fill: var(--desk-accent-screen); }
+.desk .dk-cursor { fill: var(--desk-accent-screen); }
+.desk .dk-pane { fill: var(--desk-screen-pane); }
+.desk .dk-tab { fill: #30302d; }
+.desk .dk-tab-dim { fill: #2a2a27; }
+.desk .dk-code-tab { fill: var(--desk-screen-text); font-family: var(--anatomy-mono); }
+.desk .dk-gutter { fill: #5d5d58; font-family: var(--anatomy-mono); }
+.desk .dk-code { fill: #c9c9c2; font-family: var(--anatomy-mono); }
+.desk .dk-code[data-kind='k'] { fill: #f2f2ee; font-weight: 600; }
+.desk .dk-code[data-kind='s'] { fill: #a6a69f; }
+
+.desk .dk-cup-in { fill: var(--anatomy-shade-0); }
+.desk .dk-mat { fill: var(--desk-mat); }
+.desk .dk-mat-bevel { fill: var(--anatomy-shade-1); }
+.desk .dk-photo-bg { fill: var(--desk-photo-bg); }
+.desk .dk-accent-book > .iso-solid > .iso-fill { fill: var(--desk-accent); }
+.desk .dk-accent-book > .iso-solid > .iso-shade,
+.desk .dk-accent-book > .iso-solid > .iso-top { fill: var(--desk-accent); }
+.desk .dk-accent-book > .iso-solid > .iso-top { opacity: 0.85; }
+.desk .dk-accent-book .iso-line { stroke: rgba(255, 255, 255, 0.28); }
+
+/* inside the PC case: the same parts in the shade of the case */
+.desk .dk-cavity {
+  --anatomy-paper: #cfcfca; --anatomy-face: #d9d9d4; --anatomy-top: #dededa;
+  --anatomy-shade-0: #b9b9b4; --anatomy-shade-1: #c1c1bc; --anatomy-shade-2: #c8c8c3; --anatomy-shade-3: #d0d0cb;
+  --anatomy-mid: #7d7d77; --anatomy-lo: #9a9a94; --anatomy-faint: #b0b0aa;
+  --desk-board: #c4c4bf; --desk-well: #bdbdb8; --desk-blade: #d4d4cf;
+}
+:root.dark .desk .dk-cavity, [data-theme='dark'] .desk .dk-cavity {
+  --anatomy-paper: #0f0f0e; --anatomy-face: #161615; --anatomy-top: #1a1a18;
+  --anatomy-shade-0: #0b0b0a; --anatomy-shade-1: #0e0e0d; --anatomy-shade-2: #111110; --anatomy-shade-3: #141413;
+  --anatomy-mid: #5d5d58; --anatomy-lo: #3a3a37; --anatomy-faint: #282826;
+  --desk-board: #121211; --desk-well: #0c0c0b; --desk-blade: #2a2a27;
+}
+.desk .dk-case-in { fill: #c9c9c4; }
+:root.dark .desk .dk-case-in, [data-theme='dark'] .desk .dk-case-in { fill: #0c0c0b; }
+
+/* editor on the monitor */
+.desk .dk-rule { stroke: var(--desk-screen-line); stroke-width: 0.4; }
+.desk .dk-dim-text { fill: #77776f; }
+.desk .dk-code[data-kind='c'] { fill: #7d7d76; font-style: italic; }
+.desk .dk-mini { fill: #4a4a46; }
+.desk .dk-mini-view { fill: rgba(255, 255, 255, 0.07); stroke: rgba(255, 255, 255, 0.12); stroke-width: 0.3; }
+.desk .dk-status { fill: #252523; }
+.desk .dk-status-dot { fill: var(--desk-accent-screen); }
+.desk .dk-status-dot[data-state='fail'] { fill: #f2f2ee; }
+.desk .dk-status-text { fill: #9a9a93; font-family: var(--anatomy-mono); }
+/* the crash: monochrome, an inverted dialog over dimmed code */
+.desk .dk-crash-dim { fill: rgba(10, 10, 9, 0.55); }
+.desk .dk-crash { fill: #f2f2ee; }
+.desk .dk-crash-head { fill: #1c1c1a; stroke: #f2f2ee; stroke-width: 0.4; }
+.desk .dk-crash-title { fill: #f2f2ee; font-family: var(--anatomy-mono); font-weight: 700; letter-spacing: 0.02em; }
+.desk .dk-crash-text { fill: #3a3a37; font-family: var(--anatomy-mono); }
+.desk .dk-crash-strong { fill: #1c1c1a; font-weight: 700; }
+.desk .dk-crash-line { fill: #c9c9c3; }
+.desk .dk-bar-track { fill: #d6d6d0; }
+.desk .dk-bar-fill { fill: var(--desk-accent); }
+
+/* coffee */
+.desk .dk-mug-in { fill: var(--anatomy-shade-0); }
+.desk .dk-coffee, .desk .dk-coffee-spill { fill: var(--desk-coffee); }
+.desk .dk-coffee-shine { fill: rgba(255, 255, 255, 0.08); }
+.desk .dk-steam {
+  fill: none;
+  stroke: var(--anatomy-mid);
+  stroke-width: 1.1px;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.desk[data-running] .dk-steam { animation: dk-steam 3.2s ease-in-out infinite; }
+@keyframes dk-steam {
+  0% { opacity: 0; transform: translateY(2px); }
+  30% { opacity: 0.45; }
+  100% { opacity: 0; transform: translateY(-9px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .desk .dk-steam { animation: none; opacity: 0.3; }
+}
+
+/* ── interaction ─────────────────────────────────────────────── */
+/* Lift the wrapper, never its children: many children carry a transform attribute
+   (face-plane matrices) that a CSS transform would replace. */
+.desk .dk-lift { transition: transform 0.35s var(--anatomy-ease); }
+.desk .dk-hit[data-hover] > .dk-lift { transform: translateY(-1.5px); }
+.desk .dk-hit[data-hover] .iso-edge { stroke: var(--anatomy-hi); }
+.desk .dk-hit { cursor: pointer; outline: none; }
+.desk .dk-hit:focus-visible .iso-edge { stroke: var(--desk-accent); stroke-width: 1.2px; }
+@media (prefers-reduced-motion: reduce) {
+  .desk .dk-lift { transition: none; }
+  .desk .dk-hit[data-hover] > .dk-lift { transform: none; }
+}
+
+/* ── hint chip: names the section an object leads to, or shows a radio reading ── */
+.desk { position: relative; }
+.desk-hint {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 6px)) scale(0.96);
+  opacity: 0;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--desk-ink);
+  color: rgb(var(--c-bg, 250 250 248));
+  font: 500 12px/1.3 Inter, system-ui, sans-serif;
+  white-space: nowrap;
+  transition: opacity 0.16s var(--anatomy-ease), transform 0.16s var(--anatomy-ease);
+}
+.desk-hint[data-show] { opacity: 1; transform: translate(-50%, calc(-100% - 8px)) scale(1); }
+@media (prefers-reduced-motion: reduce) { .desk-hint { transition: none; } }
+
+/* pixel art in the frame stays crisp instead of being smoothed into a blur */
+.desk image[href*='/frame/'] { image-rendering: pixelated; }

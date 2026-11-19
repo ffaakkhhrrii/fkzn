@@ -88,6 +88,20 @@
     @apply w-full max-w-6xl mx-auto px-5 sm:px-10 lg:px-12;
   }
 
+  /* Hero diorama: full bleed on phones, about 80% of the content on desktop,
+     and never taller than what is left of the screen under the heading */
+  .hero-desk {
+    /* the whole screen width on phones: the container's side padding (1.25rem) is
+       given back, and the drawing's own margin keeps it off the edges */
+    width: calc(100% + 2.5rem);
+    max-width: 880px;
+  }
+  @media (min-width: 1024px) {
+    .hero-desk {
+      width: clamp(560px, calc((100svh - 300px) * 1.09), 80%);
+    }
+  }
+
   /* Running-text link: underline draws in on hover */
   .text-link {
     @apply text-accent font-medium underline decoration-accent/30 underline-offset-4 transition-colors duration-200;
