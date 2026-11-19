@@ -126,6 +126,7 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       name: 'EDEAF',
+      platform: 'Android',
       description:
         'EDEAF is an application that designed to assist the deaf students in their learning process, incorporating various engaging features to make the application smart, easy, and fun to use. This application idea is used for the Hackathon Competition by Pijar Camp ID',
       featured: true,
@@ -138,6 +139,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: 'Quick Notes',
+      platform: 'Android',
       description:
         "A clean and minimal notes app built with Jetpack Compose — type, scan, or speak your notes and keep them organized.",
       role: 'Developer',
@@ -149,6 +151,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: 'Code Path',
+      platform: 'Flutter',
       description:
         'Code Path is a simple application I created with the aim of helping users find references, knowledge, materials, news, and roadmaps in the IT field, tailored to their specific areas of expertise.',
       role: 'Developer',
@@ -160,6 +163,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: 'Faith App',
+      platform: 'Android',
       description: "Faith is an Android app that helps Muslims in Indonesia with daily worship — prayer times, reading the Quran, and prayer reminders. It's the mobile version of the <a href='https://faith.fkzn.my.id/' target='_blank' rel='noopener noreferrer'>Faith Web</a>",
       role: 'Developer',
       technologies: ['Kotlin', 'Jetpack Compose', 'Dagger Hilt', 'Room', 'DataStore', 'Glance'],
@@ -170,6 +174,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: 'Faith Web',
+      platform: 'Web',
       description:
         "A web app for daily worship: today's prayer times for any city in Indonesia, one verse a day, and all 114 Surahs with Indonesian translation and tafsir. It's the web version of the Faith App.",
       role: 'Developer',
@@ -182,6 +187,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       name: 'CNN Prediction',
+      platform: 'Web · ML',
       description:
         'A web app that classifies images into the 10 CIFAR-10 categories (airplane, car, bird, cat, deer, dog, frog, horse, ship, truck). Upload an image and a tuned CNN model with BatchNorm and Dropout (80% test accuracy) returns the predicted class along with the probability for each class.',
       role: 'Developer',
@@ -192,6 +198,18 @@ export const portfolioData: PortfolioData = {
       image: { src: '/assets/images/opt/cnn_prediction-1280.jpg', srcSet: '/assets/images/opt/cnn_prediction-640.jpg 640w, /assets/images/opt/cnn_prediction-1280.jpg 1280w', width: 1280, height: 1041 },
     },
 
+  ],
+
+  writing: [
+    {
+      title: 'Happy things can’t possibly remain the same',
+      url: 'https://medium.com/@fkzn/happy-things-cant-possibly-remain-the-same-655ad4eb0c3d',
+      publishedAt: '2026-10-11',
+      subject: 'Clannad & Clannad: After Story',
+      kind: 'Anime',
+      excerpt:
+        'Clannad doesn’t stop there. It asks “okay, and then what?” Graduation, finding a job, responsibility, building a family.',
+    },
   ],
 
   achievements: [

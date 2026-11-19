@@ -20,6 +20,11 @@ export const HeroSection: React.FC = () => {
       <div className="wrap py-8 sm:py-12 lg:py-16">
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="animate-enter lg:col-span-7">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-accent-light px-3 py-1.5 text-sm font-medium text-accent-dark">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
+              Available for opportunities
+            </p>
+
             <div className="mb-5 flex items-center gap-3 sm:mb-6">
               <img
                 src="/assets/images/opt/profile-480.jpg"

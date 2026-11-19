@@ -3,6 +3,62 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* One curve for all UI motion: fast start, soft landing, no bounce */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+    /* Light theme. Values are RGB channels so Tailwind's /opacity works. */
+    color-scheme: light;
+    --c-bg: 250 250 248;
+    --c-bg-dark: 241 241 238;
+    --c-bg-light: 255 255 255;
+    --c-primary: 28 28 26;
+    --c-primary-dark: 15 15 14;
+    --c-primary-light: 60 61 55;
+    --c-secondary: 79 79 74;
+    --c-secondary-dark: 60 61 55;
+    --c-secondary-light: 107 107 104;
+    --c-accent: 31 94 70;
+    --c-accent-dark: 23 74 55;
+    --c-accent-light: 230 240 235;
+    --c-on-accent: 255 255 255;
+    --c-surface: 241 241 238;
+    --c-surface-dark: 232 232 228;
+    --c-surface-light: 255 255 255;
+    --c-card: 255 255 255;
+    --c-inverse: 28 28 26;
+    --c-border: 226 226 222;
+    --c-border-dark: 207 207 202;
+    --c-border-light: 238 238 235;
+  }
+
+  /* Dark theme: same roles, warm near-black ground, green lifted so it reads on dark */
+  :root.dark {
+    color-scheme: dark;
+    --c-bg: 18 19 17;
+    --c-bg-dark: 14 15 13;
+    --c-bg-light: 24 25 23;
+    --c-primary: 237 237 232;
+    --c-primary-dark: 255 255 255;
+    --c-primary-light: 212 212 206;
+    --c-secondary: 180 180 173;
+    --c-secondary-dark: 212 212 206;
+    --c-secondary-light: 142 142 136;
+    --c-accent: 111 191 152;
+    --c-accent-dark: 138 207 173;
+    --c-accent-light: 27 46 37;
+    --c-on-accent: 15 26 20;
+    --c-surface: 30 31 28;
+    --c-surface-dark: 38 39 35;
+    --c-surface-light: 24 25 23;
+    --c-card: 24 25 23;
+    --c-inverse: 10 11 9;
+    --c-border: 42 43 40;
+    --c-border-dark: 58 59 55;
+    --c-border-light: 34 35 32;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
@@ -21,8 +77,8 @@
   }
 
   ::selection {
-    background: rgba(31, 94, 70, 0.18);
-    color: #1c1c1a;
+    background: rgb(var(--c-accent) / 0.22);
+    color: rgb(var(--c-primary));
   }
 }
 
@@ -42,10 +98,57 @@
 
   /* Skip link: hidden until focused */
   .skip-link {
-    @apply absolute left-4 top-3 z-[60] -translate-y-20 rounded-md bg-accent px-4 py-3 text-sm font-semibold text-white transition-transform;
+    @apply absolute left-4 top-3 z-[60] -translate-y-20 rounded-md bg-accent px-4 py-3 text-sm font-semibold text-on-accent transition-transform;
   }
   .skip-link:focus {
     @apply translate-y-0 outline-none ring-2 ring-accent ring-offset-2;
+  }
+}
+
+/* Lenis drives scrolling when active; native smooth scroll would fight it */
+html.lenis {
+  scroll-behavior: auto;
+}
+
+/* Theme switch (see useTheme). The new theme is revealed as a circle from the
+   toggle via a JS clip-path animation, so the default crossfade is turned off.
+   With reduced motion it stays a short, gentle crossfade instead. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 120ms;
+  }
+}
+
+/* Scroll reveal: children marked .reveal wait inside a .reveal-scope until it
+   gets .is-revealed (see useReveal). Plays once; --reveal-delay staggers items. */
+.reveal {
+  transition:
+    opacity 400ms var(--ease-out) var(--reveal-delay, 0ms),
+    transform 400ms var(--ease-out) var(--reveal-delay, 0ms);
+}
+.reveal-scope:not(.is-revealed) .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 12px));
+}
+
+/* Mobile menu panel: fades down from the header on open, closes instantly */
+.menu-panel {
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+@starting-style {
+  .menu-panel {
+    opacity: 0;
+    transform: translateY(-8px);
   }
 }
 

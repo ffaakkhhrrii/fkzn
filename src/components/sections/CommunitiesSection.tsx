@@ -15,7 +15,7 @@ export const CommunitiesSection: React.FC = () => {
       id="communities"
       title="Communities"
       subtitle="From the community, for the community"
-      className="bg-white"
+      className="bg-card"
     >
       <ul className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8">
         {communities.map((item) => (

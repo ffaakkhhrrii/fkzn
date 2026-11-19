@@ -14,7 +14,7 @@ export const ExperienceSection: React.FC = () => {
       id="experience"
       title="Work Experience"
       subtitle="My professional journey and key contributions"
-      className="bg-white"
+      className="bg-card"
     >
       <div className="space-y-16">
         {experience.map((exp) => (

@@ -6,3 +6,4 @@ export { ProjectsSection } from './ProjectsSection';
 export { AchievementsSection } from './AchievementsSection';
 
 export { ContactSection } from './ContactSection';
+export { WritingSection } from './WritingSection';

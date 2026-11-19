@@ -3,9 +3,11 @@ export { GlassCard } from './GlassCard';
 export { GlassButton } from './GlassButton';
 export { Section } from './Section';
 export { Badge } from './Badge';
-export { ProjectCard } from './ProjectCard';
+export { ProjectFeature, ProjectRow } from './ProjectCard';
 export { ExperienceCard } from './ExperienceCard';
 export { AchievementCard } from './AchievementCard';
 
 // Export all icons
 export * from './Icons';
+export { ArrowLink } from './ArrowLink';
+export { WritingCard } from './WritingCard';

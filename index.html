@@ -6,6 +6,20 @@
     <link rel="icon" type="image/png" href="/assets/images/icon.png" />
     <meta name="theme-color" content="#FAFAF8" />
 
+    <!-- Apply the saved (or system) theme before first paint so there's no flash -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) {
+            document.documentElement.classList.add('dark');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#121311');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Fonts: Bricolage Grotesque (headings) + Inter (text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

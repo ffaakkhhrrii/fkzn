@@ -64,6 +64,8 @@ export interface Project {
   /** One-line result, e.g. an award. Shown on the featured project. */
   highlight?: string;
   featured?: boolean;
+  /** Where it runs, e.g. "Android", "Web". Shown next to the name. */
+  platform?: string;
   role: string;
   technologies: string[];
   links: {
@@ -106,6 +108,18 @@ export interface ThemeConfig {
 }
 
 // Complete Data Structure
+export interface Writing {
+  title: string;
+  url: string;
+  /** ISO date, e.g. "2026-10-11" */
+  publishedAt: string;
+  /** What the piece is about, e.g. the anime or film title */
+  subject: string;
+  kind: 'Anime' | 'Film';
+  /** A line from the piece itself */
+  excerpt: string;
+}
+
 export interface PortfolioData {
   personalInfo: PersonalInfo;
   socialLinks: SocialLinks;
@@ -115,6 +129,7 @@ export interface PortfolioData {
   communities?: Community[];
   projects: Project[];
   achievements: Achievement[];
+  writing: Writing[];
   seo: SEOConfig;
   theme: ThemeConfig;
 }

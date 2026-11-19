@@ -15,7 +15,7 @@ export const Badge: React.FC<BadgeProps> = ({ children, variant = 'default', cla
   const variantClasses = {
     default: 'bg-surface text-secondary-dark',
     accent: 'bg-accent-light text-accent-dark',
-    secondary: 'bg-white text-secondary border border-border',
+    secondary: 'bg-card text-secondary border border-border',
   };
 
   return (

@@ -21,28 +21,30 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="bg-primary py-24 text-white md:py-32">
+    <section id="contact" className="bg-inverse py-24 text-white md:py-32">
       <div className="wrap">
         <h2 className="max-w-4xl text-[2.25rem] leading-[1.08] font-bold text-white sm:text-5xl lg:text-6xl">
           Have a role or project in mind? Let's talk.
         </h2>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
-          Email me with what you're working on. I'm based in {personalInfo.location}.
-        </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
           <a
             href={`mailto:${personalInfo.email}`}
-            className="inline-flex min-h-[52px] items-center justify-center rounded-md bg-white px-6 font-semibold text-primary transition-[transform,background-color] duration-150 hover:-translate-y-px hover:bg-accent-light active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-md bg-white px-6 font-semibold text-[#1C1C1A] transition-[transform,background-color] duration-150 hover:-translate-y-px hover:bg-white/90 active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-inverse"
           >
             {personalInfo.email}
           </a>
           <button
             type="button"
             onClick={copyEmail}
-            className="inline-flex min-h-[52px] items-center justify-center rounded-md border border-white/30 px-5 text-sm font-semibold text-white transition-[transform,border-color] duration-150 hover:-translate-y-px hover:border-white active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="inline-flex min-h-[52px] items-center justify-center rounded-md border border-white/30 px-5 text-sm font-semibold text-white transition-[transform,border-color] duration-150 hover:-translate-y-px hover:border-white active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:min-w-[11rem]"
           >
-            <span aria-live="polite">{copied ? 'Copied' : 'Copy email address'}</span>
+            <span aria-live="polite">
+              {/* key remounts the label so the new text slides in */}
+              <span key={String(copied)} className="inline-block animate-swap">
+                {copied ? 'Copied' : 'Copy email address'}
+              </span>
+            </span>
           </button>
         </div>
 

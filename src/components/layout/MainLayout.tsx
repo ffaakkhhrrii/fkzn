@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { useSmoothScroll } from '@/hooks';
 import {
   HeroSection,
   AboutSection,
@@ -8,14 +9,17 @@ import {
   AchievementsSection,
   CommunitiesSection,
   ProjectsSection,
+  WritingSection,
   ContactSection,
 } from '@/components/sections';
 
 /**
  * MainLayout
- * Order: the person first, then experience and proof, then the work, then contact.
+ * Order: the person first, then experience and proof, then the work and writing, then contact.
  */
 export const MainLayout: React.FC = () => {
+  useSmoothScroll();
+
   return (
     <div className="flex min-h-screen flex-col">
       <a href="#main" className="skip-link">
@@ -30,6 +34,7 @@ export const MainLayout: React.FC = () => {
         <AchievementsSection />
         <CommunitiesSection />
         <ProjectsSection />
+        <WritingSection />
         <ContactSection />
       </main>
 

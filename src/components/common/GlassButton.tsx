@@ -28,11 +28,11 @@ export const GlassButton: React.FC<ButtonProps> = ({
     'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0'
   );
 
-  const solid = 'bg-accent text-white border border-accent hover:bg-accent-dark hover:border-accent-dark';
+  const solid = 'bg-accent text-on-accent border border-accent hover:bg-accent-dark hover:border-accent-dark';
   const variantClasses = {
     primary: solid,
     accent: solid,
-    secondary: 'bg-white text-primary border border-border-dark hover:border-primary',
+    secondary: 'bg-card text-primary border border-border-dark hover:border-primary',
     ghost: 'bg-transparent text-primary border border-transparent hover:bg-surface',
   };
 
