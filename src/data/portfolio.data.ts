@@ -281,7 +281,7 @@ export const portfolioData: PortfolioData = {
   seo: {
     metaTitle: 'Fakhri Zain - Software Developer',
     metaDescription:
-      'Fakhri Zain, Jakarta: Android apps, web platforms, LKS mentoring, and writing on what I watch, read and build.',
+      'Fakhri Zain is a software developer in Jakarta, building for Android and the web. Projects, experience, writing and more.',
     keywords: 'software developer',
     openGraphImage: '/assets/images/og.jpg',
   },
