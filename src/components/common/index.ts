@@ -11,3 +11,4 @@ export { AchievementCard } from './AchievementCard';
 export * from './Icons';
 export { ArrowLink } from './ArrowLink';
 export { WritingCard } from './WritingCard';
+export { ToolIcon } from './ToolIcon';

@@ -4,3 +4,4 @@ export { useActiveSection } from './useActiveSection';
 export { useReveal } from './useReveal';
 export { useSmoothScroll } from './useSmoothScroll';
 export { useTheme } from './useTheme';
+export { useDrawOnce } from './useDrawOnce';

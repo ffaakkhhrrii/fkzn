@@ -78,10 +78,8 @@ export const ProjectFeature: React.FC<{ project: Project }> = ({ project }) => {
       </div>
 
       <div className="lg:col-span-5">
-        <p className="text-sm font-semibold text-accent">
-          {project.highlight ?? project.platform ?? 'Featured'}
-        </p>
-        <h3 className="mt-2 text-3xl font-bold">{project.name}</h3>
+        <h3 className="text-3xl font-bold">{project.name}</h3>
+        <p className="mt-1 text-sm text-text-light">{project.highlight ?? project.platform ?? 'Featured'}</p>
         <div className={`mt-3 ${descriptionClass}`} dangerouslySetInnerHTML={{ __html: project.description }} />
         <Stack technologies={project.technologies} className="mt-5" />
 
@@ -106,7 +104,8 @@ export const ProjectFeature: React.FC<{ project: Project }> = ({ project }) => {
 
 /**
  * ProjectRow
- * One line of the project index: name and platform, what it does, stack and links.
+ * One entry of the project index: picture, then name and platform, what it does, and
+ * a footer with the stack and links. One column, so it fits beside the desk.
  */
 export const ProjectRow: React.FC<{ project: Project }> = ({ project }) => (
   <article className="flex gap-4 py-6 sm:gap-6">
@@ -124,18 +123,18 @@ export const ProjectRow: React.FC<{ project: Project }> = ({ project }) => (
       />
     </div>
 
-    <div className="grid min-w-0 flex-1 grid-cols-1 gap-2 md:grid-cols-12 md:gap-8">
-      <div className="md:col-span-3">
+    <div className="min-w-0 flex-1">
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <h3 className="text-xl font-bold leading-snug">{project.name}</h3>
-        {project.platform && <p className="mt-1 text-sm text-text-light">{project.platform}</p>}
+        {project.platform && <p className="text-sm text-text-light">{project.platform}</p>}
       </div>
 
       <div
-        className={`md:col-span-5 ${descriptionClass} !text-[15px]`}
+        className={`mt-2 max-w-[62ch] ${descriptionClass} !text-[15px]`}
         dangerouslySetInnerHTML={{ __html: project.description }}
       />
 
-      <div className="md:col-span-4">
+      <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
         <Stack technologies={project.technologies} />
         <RowLinks project={project} />
       </div>

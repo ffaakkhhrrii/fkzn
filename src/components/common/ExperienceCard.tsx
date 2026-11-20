@@ -51,13 +51,15 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) =>
           </ul>
         )}
 
-        <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Technologies">
-          {experience.technologies.map((tech) => (
-            <li key={tech}>
-              <Badge>{tech}</Badge>
-            </li>
-          ))}
-        </ul>
+        {experience.technologies.length > 0 && (
+          <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Technologies">
+            {experience.technologies.map((tech) => (
+              <li key={tech}>
+                <Badge>{tech}</Badge>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </article>
   );

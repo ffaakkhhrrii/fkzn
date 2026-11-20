@@ -223,31 +223,12 @@
 .desk .dk-lift { transition: transform 0.35s var(--anatomy-ease); }
 .desk .dk-hit[data-hover] > .dk-lift { transform: translateY(-1.5px); }
 .desk .dk-hit[data-hover] .iso-edge { stroke: var(--anatomy-hi); }
-.desk .dk-hit { cursor: pointer; outline: none; }
-.desk .dk-hit:focus-visible .iso-edge { stroke: var(--desk-accent); stroke-width: 1.2px; }
+.desk { position: relative; }
+.desk .dk-hit { cursor: pointer; }
+.desk .dk-hit[data-active] .iso-edge { stroke: var(--desk-accent); }
 @media (prefers-reduced-motion: reduce) {
   .desk .dk-lift { transition: none; }
   .desk .dk-hit[data-hover] > .dk-lift { transform: none; }
 }
 
-/* ── hint chip: names the section an object leads to, or shows a radio reading ── */
-.desk { position: relative; }
-.desk-hint {
-  position: absolute;
-  z-index: 2;
-  pointer-events: none;
-  transform: translate(-50%, calc(-100% - 6px)) scale(0.96);
-  opacity: 0;
-  padding: 4px 9px;
-  border-radius: 999px;
-  background: var(--desk-ink);
-  color: rgb(var(--c-bg, 250 250 248));
-  font: 500 12px/1.3 Inter, system-ui, sans-serif;
-  white-space: nowrap;
-  transition: opacity 0.16s var(--anatomy-ease), transform 0.16s var(--anatomy-ease);
-}
-.desk-hint[data-show] { opacity: 1; transform: translate(-50%, calc(-100% - 8px)) scale(1); }
-@media (prefers-reduced-motion: reduce) { .desk-hint { transition: none; } }
 
-/* pixel art in the frame stays crisp instead of being smoothed into a blur */
-.desk image[href*='/frame/'] { image-rendering: pixelated; }

@@ -1,13 +1,16 @@
 // Live behaviour for the desk diorama. Framework-free: it takes the mounted SVG
 // and drives it through attributes, one requestAnimationFrame loop, no re-renders.
 //
-// Three toys: the monitor's code breaks when touched, the coffee spills when
-// touched, and the picture frame swings to the next picture.
+// Five objects open a part of the site (see onOpen). The gags still live here: the
+// frame swings to its next picture when opened, and typing a dangerous command on the
+// real keyboard breaks the build on the monitor ("spill" knocks the coffee over).
 import { DESK_META as META } from './art.generated';
 
 export interface DeskOptions {
-  /** Pictures for the wall frame; a touch on the frame shows the next one. */
+  /** Pictures for the wall frame; opening the frame shows the next one. */
   frameImages?: string[];
+  /** Called with the object's route (work, writing, about, awards, contact) when it is touched. */
+  onOpen?: (route: string) => void;
 }
 
 const MAX_CHARS = 40;
@@ -37,7 +40,6 @@ const keyFor = (code: string) => META.keys.indexOf(code as never);
 export function mountDesk(root: HTMLElement, options: DeskOptions = {}): () => void {
   const svg = root.querySelector('svg') as SVGSVGElement;
   const q = (sel: string) => svg.querySelector(sel) as SVGElement;
-  const hint = root.querySelector('[data-desk-hint]') as HTMLElement | null;
   const status = root.querySelector('[data-desk-status]') as HTMLElement | null;
   const still = window.matchMedia('(prefers-reduced-motion: reduce)');
   const say = (text: string) => {
@@ -142,48 +144,23 @@ export function mountDesk(root: HTMLElement, options: DeskOptions = {}): () => v
     }
     run();
   }
-  const ACT: Record<string, () => void> = { monitor: knockMonitor, mug: knockMug, frame: nextPicture };
+  // Typed on the real keyboard and sent with Enter: the build breaks, or the coffee goes.
+  const runCommand = (cmd: string) => {
+    if (/--force|rm -rf|sudo|drop table/i.test(cmd)) knockMonitor();
+    else if (/spill|coffee/i.test(cmd)) knockMug();
+  };
 
-  // ── hint chip ──
-  let hideTimer = 0;
-  function showHint(el: Element, text: string) {
-    if (!hint) return;
-    clearTimeout(hideTimer);
-    const box = (el as SVGGraphicsElement).getBoundingClientRect();
-    const host = root.getBoundingClientRect();
-    hint.textContent = text;
-    hint.style.left = `${box.left + box.width / 2 - host.left}px`;
-    hint.style.top = `${box.top - host.top}px`;
-    hint.dataset.show = '';
-  }
-  function hideHint() {
-    if (!hint) return;
-    clearTimeout(hideTimer);
-    hideTimer = window.setTimeout(() => delete hint.dataset.show, 120);
-  }
+  // ── objects ──
+  const hover = (g: Element, on: boolean) => {
+    g.toggleAttribute('data-hover', on);
+    root.dispatchEvent(new CustomEvent('desk:hover', { detail: on ? (g as SVGGElement).dataset.route : null }));
+  };
   toys.forEach((g) => {
-    // Anchor the chip to what is visible: the group's own box also counts the clipped,
-    // scrolled-away code and the hidden fallen mug and puddle.
-    const anchor = ({ monitor: q('.dk-scr-bg'), mug: mugUp } as Record<string, Element>)[g.dataset.toy!] ?? g;
-    const enter = () => {
-      g.setAttribute('data-hover', '');
-      showHint(anchor, g.dataset.hint ?? '');
-    };
-    const leave = () => {
-      g.removeAttribute('data-hover');
-      hideHint();
-    };
-    g.addEventListener('pointerenter', enter);
-    g.addEventListener('pointerleave', leave);
-    g.addEventListener('focus', enter);
-    g.addEventListener('blur', leave);
-    g.addEventListener('click', () => ACT[g.dataset.toy!]?.());
-    g.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        e.stopPropagation();
-        ACT[g.dataset.toy!]?.();
-      }
+    g.addEventListener('pointerenter', () => hover(g, true));
+    g.addEventListener('pointerleave', () => hover(g, false));
+    g.addEventListener('click', () => {
+      if (g.dataset.toy === 'frame') nextPicture();
+      options.onOpen?.(g.dataset.route!);
     });
   });
 
@@ -210,6 +187,7 @@ export function mountDesk(root: HTMLElement, options: DeskOptions = {}): () => v
     }
     if (key === 'Enter') {
       press('Enter', 0.12);
+      runCommand(line);
       return setLine('');
     }
     if (key.length !== 1) return;
@@ -395,6 +373,5 @@ export function mountDesk(root: HTMLElement, options: DeskOptions = {}): () => v
     window.removeEventListener('keydown', onKey);
     document.removeEventListener('visibilitychange', onHidden);
     if (frame) cancelAnimationFrame(frame);
-    clearTimeout(hideTimer);
   };
 }

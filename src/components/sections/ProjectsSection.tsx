@@ -21,7 +21,7 @@ export const ProjectsSection: React.FC = () => {
     <Section
       id="projects"
       title="My Projects"
-      subtitle="A collection of personal projects and applications I've built"
+      subtitle="Side projects and competition builds, on Android, Flutter and the web."
     >
       <div ref={ref} className={cn('reveal-scope', revealed && 'is-revealed')}>
         <div className="reveal">

@@ -7,7 +7,7 @@ export const portfolioData: PortfolioData = {
     location: 'East Jakarta, Indonesia',
     email: 'fakhrizain9@gmail.com',
     phone: '+62 851-7690-1068',
-    shortBio: 'Software Developer focused on creating clean, efficient, and impactful software solutions.',
+    shortBio: 'I build software for Android and the web, and I care about the small details that make it feel right. Outside of that, I watch a lot of films and anime, and write about them just because I like to.',
     bio: "I'm a Software Developer with 2+ years of experience building applications that solve real problems. I enjoy the process of breaking down complex challenges whether it's designing a feature from scratch or debugging something no one else wants to touch. I've worked both independently and in collaborative team settings, and I pick up new tools and technologies quickly whenever a project calls for it. Outside of writing code, I'm always looking for ways to sharpen my skills and take on projects that push me to learn something new.",
     profilePhoto: {
       path: '/assets/images/opt/profile-800.jpg',
@@ -41,12 +41,20 @@ export const portfolioData: PortfolioData = {
 
   experience: [
     {
+      position: 'Freelance Software Developer',
+      company: 'Freelance',
+      location: 'Remote',
+      duration: 'October 2026 - Present',
+      description: 'Building a retail application for a client, with the backend in Node.js and Express.',
+      technologies: ['Node.js', 'Express'],
+    },
+    {
       position: 'Software Developer',
       company: 'ADW Consulting',
       location: 'Jakarta, Indonesia / Hybrid',
       duration: 'June 2025 - Present',
       description:
-        'Developed and maintained procurement platforms across Android and web, delivering end-to-end features from backend architecture to deployment. Collaborated cross-functionally with developers and implementors to ensure smooth delivery and issue resolution.\n• LLM Integrations – Designed and implemented LLM-powered features across platforms, including backend logic and AI-assisted pipelines, to support business insight generation.\n• Test Automation – Contributed to a Playwright + TypeScript test automation website with AI that generates test scenarios from prompts.\n• API Integration – Built and integrated backend APIs to support seamless communication between the Android application and backend services.\n• System Design – Architected scalable, database-driven systems to replace hardcoded logic and improve maintainability.\n• Feature Development – Building and implementing new features based on business requirements.\n• Documentation – Produced technical documentation covering system architecture and feature logic to support long-term maintainability and team onboarding.\n• Team Collaboration – Worked closely with developers and implementors to troubleshoot issues, align on requirements, and ship features across platforms.',
+        'Developed and maintained procurement platforms across Android and web, from backend architecture to deployment. Designed LLM-powered features and AI-assisted pipelines for business insights, built the APIs behind the Android app, replaced hardcoded logic with database-driven systems, contributed to an AI-assisted Playwright test automation tool, and wrote technical documentation for the team.',
       technologies: [
         'Python',
         'PHP',
@@ -88,7 +96,7 @@ export const portfolioData: PortfolioData = {
       degree: 'Bachelor of Science in Computer Science',
       institution: 'Binus Online University',
       location: 'Indonesia',
-      duration: '2025 - 2029',
+      duration: '2025 - 2029 (Expected)',
       gpa: '3.95',
       relevantCoursework: 'Data Structures, Algorithms, Software Design, etc.',
     },
@@ -273,7 +281,7 @@ export const portfolioData: PortfolioData = {
   seo: {
     metaTitle: 'Fakhri Zain - Software Developer',
     metaDescription:
-      'Personal website of Fakhri Zain, a Software Developer specializing in Application Development. View my portfolio, projects, and get in touch.',
+      'Fakhri Zain, Jakarta: Android apps, web platforms, LKS mentoring, and writing on what I watch, read and build.',
     keywords: 'software developer',
     openGraphImage: '/assets/images/og.jpg',
   },

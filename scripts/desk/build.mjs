@@ -976,16 +976,17 @@ function photoFrame() {
 }
 
 // ─── Hit groups ────────────────────────────────────────────────────────────
-// Three toys respond to a touch; the rest of the desk is just the desk.
+// Five objects open a part of the site. The HTML callouts beside the drawing are the
+// keyboard and screen-reader path, so the drawn objects stay out of the tab order.
 const TOYS = {
-  monitor: { label: "Monitor with long working code. Touch it and it breaks.", hint: "Don't touch" },
-  mug: { label: "Hot coffee. Touch it and it spills.", hint: "Careful, hot" },
-  frame: { label: "Picture frame. Touch it to change the picture.", hint: "Next picture" },
+  monitor: "work",
+  books: "writing",
+  trophy: "awards",
+  frame: "about",
+  mug: "contact",
 };
-const toy = (id, body) => {
-  const t = TOYS[id];
-  return `<g class="dk-hit" data-toy="${id}" data-hint="${t.hint}" tabindex="0" role="button" aria-label="${t.label}"><g class="dk-lift">${body}</g></g>`;
-};
+const toy = (id, body) =>
+  `<g class="dk-hit" data-toy="${id}" data-route="${TOYS[id]}"><g class="dk-lift">${body}</g></g>`;
 
 // ─── Assemble ──────────────────────────────────────────────────────────────
 const frame = photoFrame();
@@ -1001,8 +1002,8 @@ const PARTS = [
   room(),
   toy("frame", `<g data-part="frame-swing">${frame.svg}</g>`),
   shelf(),
-  books(),
-  trophy(),
+  toy("books", books()),
+  toy("trophy", trophy()),
   underCables(),
   legFrame(LEG_X[0]),
   crossbeam(),

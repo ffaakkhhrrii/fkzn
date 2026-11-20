@@ -1,0 +1,371 @@
+/* The room: one screen with the desk; panels slide in beside it. */
+
+.room {
+  --room-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --room-panel-w: min(max(56vw, 600px), 860px);
+  --room-bar-h: 64px;
+  /* one left edge for the handle, the name and the index, at every width */
+  --room-gutter: 20px;
+  min-height: 100svh;
+}
+
+/* ── top bar ── */
+.room-bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--room-bar-h);
+  padding: 0 var(--room-gutter);
+  pointer-events: none;
+}
+.room-bar > * { pointer-events: auto; }
+.room-brand {
+  font-family: 'Bricolage Grotesque', Inter, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: rgb(var(--c-primary));
+  border-radius: 6px;
+  padding: 6px 4px;
+  margin-left: -4px; /* the text, not its padding, sits on the gutter */
+}
+.room-brand:focus-visible,
+.room-icon-btn:focus-visible { outline: 2px solid rgb(var(--c-primary)); outline-offset: 2px; }
+.room-icon-btn {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: rgb(var(--c-secondary));
+  transition: color 0.2s var(--room-ease), background-color 0.2s var(--room-ease);
+}
+.room-icon-btn:hover { color: rgb(var(--c-primary)); background: rgb(var(--c-surface)); }
+
+/* ── scene ── */
+.room-scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--room-bar-h) + 8px) 0 24px;
+  overflow-x: clip;
+}
+.room-intro {
+  width: 100%;
+  padding: 0 var(--room-gutter);
+  text-align: left;
+}
+.room-title {
+  font-size: clamp(2rem, 1.2rem + 3.4vw, 3.5rem);
+  line-height: 1.04;
+  font-weight: 800;
+  text-wrap: balance;
+}
+.room-bio {
+  margin-top: 14px;
+  max-width: 34ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgb(var(--c-secondary));
+  text-wrap: pretty;
+}
+
+.room-frame {
+  position: relative;
+  width: 100%;
+  max-width: 880px;
+  margin-top: 32px;
+}
+.room-stage {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  transition: transform 0.75s var(--room-ease);
+  will-change: transform;
+}
+
+/* desk hotspots: a small shiny dot on each object that opens something. It glints with a
+   soft ring every few seconds (staggered), and names its part on hover or keyboard focus. */
+.room-spots { position: absolute; inset: 0; pointer-events: none; transition: opacity 0.25s var(--room-ease); }
+.room[data-open] .room-spots { opacity: 0; visibility: hidden; transition: opacity 0.2s var(--room-ease), visibility 0s 0.2s; }
+.room-spot {
+  position: absolute;
+  width: 0;
+  height: 0;
+  /* a white pearl: on the light paper it needs a soft edge and shadow to stand out */
+  --spot-edge: rgb(28 28 26 / 0.32);
+  --spot-glow: rgb(28 28 26 / 0.22);
+  --spot-ring: rgb(28 28 26 / 0.35);
+}
+:root.dark .room-spot {
+  --spot-edge: rgb(255 255 255 / 0.5);
+  --spot-glow: rgb(255 255 255 / 0.45);
+  --spot-ring: rgb(255 255 255 / 0.85);
+}
+.room-spot a {
+  position: absolute;
+  left: -22px;
+  top: -22px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  pointer-events: auto;
+}
+.room-spot a:focus-visible { outline: 2px solid rgb(var(--c-primary)); outline-offset: -4px; }
+.room-spot-dot {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  /* a lit pearl: a bright highlight up-left, a cool shade down-right, a soft glow */
+  background: radial-gradient(circle at 35% 32%, #fff 0 22%, #f1f1ee 48%, #d6d6d1 100%);
+  box-shadow: 0 0 0 1px var(--spot-edge), 0 1px 3px rgb(0 0 0 / 0.18), 0 0 14px 3px var(--spot-glow);
+  transition: transform 0.25s var(--room-ease), box-shadow 0.25s var(--room-ease);
+}
+.room-spot-dot::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1.5px solid var(--spot-ring);
+  opacity: 0;
+  animation: room-glint 3.2s var(--room-ease) infinite;
+  animation-delay: calc(var(--i, 0) * 0.45s + 0.8s);
+}
+@keyframes room-glint {
+  0% { transform: scale(1); opacity: 0.75; }
+  55%, 100% { transform: scale(2.8); opacity: 0; }
+}
+.room-spot a:hover .room-spot-dot,
+.room-spot a[data-hover] .room-spot-dot,
+.room-spot a:focus-visible .room-spot-dot {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 1px var(--spot-edge), 0 1px 3px rgb(0 0 0 / 0.18), 0 0 20px 6px var(--spot-glow);
+}
+.room-spot-label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 4px);
+  padding: 1px 6px 2px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-family: 'Bricolage Grotesque', Inter, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  color: rgb(var(--c-bg));
+  background: rgb(var(--c-primary));
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  pointer-events: none;
+  transition: opacity 0.18s var(--room-ease), transform 0.18s var(--room-ease);
+}
+.room-spot a:hover .room-spot-label,
+.room-spot a[data-hover] .room-spot-label,
+.room-spot a:focus-visible .room-spot-label { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) {
+  .room-spot-dot::after { animation: none; }
+}
+
+/* the plain list under the desk: the direct path to every part */
+.room-index { width: 100%; padding: 32px var(--room-gutter) 0; }
+.room-index ul { display: grid; gap: 0; border-top: 1px solid rgb(var(--c-border)); }
+.room-index li { border-bottom: 1px solid rgb(var(--c-border)); }
+.room-index a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding: 12px 2px;
+  border-radius: 4px;
+}
+.room-index a:focus-visible { outline: 2px solid rgb(var(--c-primary)); outline-offset: 2px; }
+.room-index-label { font-family: 'Bricolage Grotesque', Inter, system-ui, sans-serif; font-weight: 700; font-size: 1.125rem; color: rgb(var(--c-primary)); transition: color 0.2s var(--room-ease); }
+.room-index-holds { font-size: 0.875rem; color: rgb(var(--c-secondary)); text-align: right; }
+.room-index a:hover .room-index-label { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+
+@media (min-width: 640px) {
+  .room { --room-gutter: 40px; }
+}
+
+/* wide screens: one screen. The name and the index share a left column, so all the
+   text reads as one block and the desk keeps the rest of the screen to itself. */
+@media (min-width: 1024px) {
+  .room { --room-gutter: clamp(32px, 5vw, 96px); }
+  .room-scene {
+    height: 100svh;
+    min-height: 640px;
+    padding: var(--room-bar-h) clamp(24px, 4vw, 72px) 0 0;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .room-intro {
+    position: absolute;
+    top: calc(var(--room-bar-h) + 6vh);
+    left: var(--room-gutter);
+    width: auto;
+    padding: 0;
+    z-index: 2;
+  }
+  .room-title { font-size: clamp(2.25rem, 0.6rem + 3vw, 3.5rem); }
+  .room-bio { max-width: 30ch; font-size: 1rem; }
+  .room-frame {
+    width: auto;
+    /* as tall as the screen allows, but never into the left column */
+    height: min(calc(100svh - var(--room-bar-h) - 48px), calc((100vw - 340px) / 1.0905));
+    max-width: none;
+    margin: 0 0 24px;
+  }
+  .room-index { position: absolute; left: var(--room-gutter); bottom: 24px; width: auto; padding: 0; }
+  .room-index ul { display: flex; flex-direction: column; gap: 0; border: 0; }
+  .room-index li { border: 0; }
+  .room-index a { min-height: 36px; padding: 4px 0; gap: 8px; }
+  .room-index-label { font-size: 1rem; }
+  .room-index-holds { display: none; }
+  /* the panel bar leaves room for the theme button, which stays on top */
+  /* clears the theme button, which sits on the same gutter (44px button + 12px air) */
+  .room .room-panel-bar { padding-right: calc(var(--room-gutter) + 56px); }
+}
+@media (min-width: 1280px) {
+  .room-bio { font-size: 1.0625rem; }
+}
+.room-index, .room-intro { transition: opacity 0.3s var(--room-ease); }
+.room[data-open] .room-index,
+.room[data-open] .room-intro { opacity: 0; pointer-events: none; }
+
+/* ── panel ── */
+.room-panel {
+  position: fixed;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  background: rgb(var(--c-bg));
+  /* phones: a sheet under the zoomed object */
+  inset: 30svh 0 0 0;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -8px 32px rgb(0 0 0 / 0.12), 0 0 0 1px rgb(var(--c-border));
+  transition: transform 0.6s var(--room-ease);
+}
+@starting-style {
+  .room-panel[data-state='open'] { transform: translateY(100%); }
+}
+.room-panel[data-state='closed'] { transform: translateY(100%); transition-duration: 0.42s; }
+
+@media (min-width: 1024px) {
+  .room-panel {
+    inset: 0 0 0 auto;
+    width: var(--room-panel-w);
+    border-radius: 0;
+    box-shadow: -12px 0 40px rgb(0 0 0 / 0.08), -1px 0 0 rgb(var(--c-border));
+  }
+  @starting-style {
+    .room-panel[data-state='open'] { transform: translateX(100%); }
+  }
+  .room-panel[data-state='closed'] { transform: translateX(100%); }
+}
+
+.room-panel-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 10px clamp(16px, 3vw, 40px);
+  border-bottom: 1px solid rgb(var(--c-border));
+}
+.room-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 12px 0 6px;
+  margin-left: -6px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: rgb(var(--c-primary));
+  transition: background-color 0.2s var(--room-ease);
+}
+/* hover: the chevron steps left, toward the desk, and a hairline draws under the words */
+.room-back svg { transition: transform 0.25s var(--room-ease); }
+.room-back-label {
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0% 1.5px;
+  padding-bottom: 2px;
+  transition: background-size 0.3s var(--room-ease);
+}
+.room-back:hover svg { transform: translateX(-3px); }
+.room-back:hover .room-back-label { background-size: 100% 1.5px; }
+.room-back:focus-visible { outline: 2px solid rgb(var(--c-primary)); outline-offset: 2px; }
+.room-tabs { display: flex; flex-wrap: wrap; gap: 2px; margin-right: -10px; }
+.room-tabs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(var(--c-secondary));
+  transition: color 0.2s var(--room-ease), background-color 0.2s var(--room-ease);
+}
+/* same hover as Back: a hairline draws under the word; the open part keeps its line */
+.room-tab-label {
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0% 1.5px;
+  padding-bottom: 2px;
+  transition: background-size 0.3s var(--room-ease);
+}
+.room-tabs a:hover { color: rgb(var(--c-primary)); }
+.room-tabs a:hover .room-tab-label,
+.room-tabs a[aria-current='page'] .room-tab-label { background-size: 100% 1.5px; }
+.room-tabs a[aria-current='page'] { color: rgb(var(--c-accent)); font-weight: 600; }
+.room-tabs a:focus-visible { outline: 2px solid rgb(var(--c-primary)); outline-offset: 2px; }
+@media (max-width: 639px) {
+  .room-tabs { display: none; }
+}
+
+.room-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.room-panel-body :is(h2, h3) { text-wrap: balance; }
+.room-panel-body p { text-wrap: pretty; }
+/* the sections were page-wide; in the panel they share its width and a tighter rhythm */
+.room-panel-body > section { padding-top: 40px; padding-bottom: 48px; }
+.room-panel-body > section + section { border-top: 1px solid rgb(var(--c-border)); }
+.room-panel-body .wrap { max-width: none; padding-left: clamp(20px, 3.4vw, 48px); padding-right: clamp(20px, 3.4vw, 48px); }
+.room-panel-body > section#contact { min-height: 100%; }
+
+html.room-open { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .room-stage, .room-panel { transition: none; }
+}
+
+/* every section sits on the panel's paper */
+.room-panel-body > section { background: transparent; }
+/* inside the panel, green belongs to the open object only: accents fall back to ink */
+.room-panel-body { --c-accent: var(--c-primary); }
+/* phones: the bar sits over the zoomed drawing, so it gets a little of the wall behind it */
+@media (max-width: 1023px) {
+  .room[data-open] .room-bar { background: rgb(var(--c-bg) / 0.86); backdrop-filter: blur(6px); }
+}
+
+/* panel type: the sections were sized for a full page; beside the desk they read one step down */
+.room-panel-body h2 { font-size: clamp(1.625rem, 1.2rem + 1vw, 2.125rem); line-height: 1.12; }
+.room-panel-body section#contact h2 { font-size: clamp(1.875rem, 1.3rem + 1.6vw, 2.75rem); }
+.room-panel-body h3.text-3xl { font-size: 1.5rem; line-height: 1.2; }
+.room-panel-body h3.text-2xl { font-size: 1.25rem; }
+.room-panel-body h3.text-xl { font-size: 1.0625rem; }
+.room-panel-body :is(.text-lg, .md\:text-lg) { font-size: 1rem; line-height: 1.6; }
+.room-panel-body .text-base { font-size: 0.9375rem; line-height: 1.6; }
+.room-panel-body .text-sm { font-size: 0.8125rem; }
+.room-panel-body > section { padding-top: 32px; }
+.room-panel-body .mb-10, .room-panel-body .md\:mb-14 { margin-bottom: 1.75rem; }
